@@ -1,0 +1,20 @@
+---
+import { PocketKnife, Signpost, BookOpen, Newspaper } from 'lucide-react'
+
+const categoryIcons = {
+  guide: Signpost,
+  post: Newspaper,
+  resource: BookOpen,
+  tool: PocketKnife,
+}
+
+type Props = {
+  category: keyof typeof categoryIcons
+}
+
+const Icon = categoryIcons[Astro.props.category]
+---
+
+<span class="inline-flex size-7 items-center justify-center bg-slate-800 text-slate-50 shrink-0 rounded-full">
+  <Icon className="size-4"/>
+</span>

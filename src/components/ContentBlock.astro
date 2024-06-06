@@ -1,0 +1,30 @@
+---
+import { ArrowRight, type LucideProps } from 'lucide-react'
+import type { ForwardRefExoticComponent, RefAttributes } from 'react'
+
+type Props = {
+  title: string,
+  icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>,
+  entries: any[],
+}
+
+const { title, icon: Icon, entries } = Astro.props
+---
+
+<div class="mt-12 max-w-xl mx-auto">
+  <div class="flex items-center gap-2 font-semibold">
+    <Icon className="size-4 inline-block shrink-0"/>
+    {title}
+  </div>
+  <div class="prose prose-sm prose-sky sm:prose-base dark:prose-invert mt-4 space-y-2">
+    {entries.map(entry => (
+      <article class="flex items-start gap-2">
+        <ArrowRight className="size-4 h-7 shrink-0 opacity-75"/>
+        <span class="inline-flex size-7 items-center justify-center bg-black text-white shrink-0 rounded-full">
+          <Icon className="size-4"/>
+        </span>
+        <a href={`/${entry.slug}/`}>{entry.data.title}</a>
+      </article>
+    ))}
+  </div>
+</div>

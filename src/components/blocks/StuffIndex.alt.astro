@@ -1,0 +1,68 @@
+---
+import { ArrowRight, Infinity, PocketKnife, Signpost, BookOpen, Newspaper, type LucideProps } from 'lucide-react'
+import { getCollection } from 'astro:content'
+import { CategoryIcon } from '@/components'
+import type { ForwardRefExoticComponent, RefAttributes } from 'react'
+
+const stuff = (await getCollection('stuff', ({ data }) => data.draft !== true && data.hidden !== true)).sort((a, b) => +b.data.created - +a.data.created)
+
+type Icon = ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
+
+const categoryIcons = {
+  guide: Signpost,
+  post: Newspaper,
+  resource: BookOpen,
+  tool: PocketKnife,
+}
+
+const filters = [
+  { title: 'All stuff', value: 'all', checked: true, Icon: Infinity },
+  ...Object.keys(categoryIcons).map(value => ({ title: value[0].toUpperCase() + value.slice(1), value, checked: false, Icon: categoryIcons[value as keyof typeof categoryIcons] }))
+]
+---
+
+<div class="mt-16 max-w-xl mx-auto">
+  <div class="flex items-center gap-2 font-semibold" id="filters-container">
+    {filters.map(({ Icon, ...filter }) => (
+      <label class="inline-flex items-center font-semibold rounded-full px-3 h-7 min-w-7 bg-slate-200 gap-2 has-[:checked]:bg-slate-800 has-[:checked]:text-slate-50">
+        <input type="radio" name="content-selection" class="hidden invisible peer" value={filter.value} checked={filter.checked}/>
+        <Icon className="size-4 inline-block shrink-0"/>
+        <span class="hidden peer-checked:inline sm:inline">{filter.title}</span>
+      </label>
+    ))}
+  </div>
+  <div class="prose prose-sm prose-sky sm:prose-base dark:prose-invert mt-8 space-y-4" id="stuff">
+    {stuff.map(entry => (
+      <article class="flex items-start gap-2" data-category={entry.data.category}>
+        <ArrowRight className="size-4 h-7 shrink-0 opacity-75"/>
+        <CategoryIcon category={entry.data.category}/>
+        <a href={`/sandstuff/${entry.slug}/`}>{entry.data.title}</a>
+      </article>
+    ))}
+  </div>
+</div>
+
+<script>
+  const filters = document.querySelectorAll<HTMLInputElement>('input[type=radio][name=content-selection]')
+  const stuff = document.querySelectorAll<HTMLElement>('#stuff article')
+
+  function filter(category: string) {
+    if (category === 'all') {
+      for (let s of stuff) {
+        s.classList.remove('hidden')
+      }
+
+      return
+    }
+
+    for (let s of stuff) {
+      s.dataset.category! == category ? s.classList.remove('hidden') : s.classList.add('hidden')
+    }
+  }
+
+  for (let f of filters) {
+    f.addEventListener('change', (_e) => {
+      filter(f.value)
+    })
+  }
+</script>

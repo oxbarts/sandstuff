@@ -1,0 +1,11 @@
+---
+type Props = {
+  class?: string,
+  brandColor?: string
+  contrastColor?: string
+}
+
+const { class: className = '', brandColor = '#00aeef', contrastColor = '#ffffff', ...rest } = Astro.props
+---
+
+<svg class={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 255 253" class={className} {...rest}><g transform="translate(-.087 -.472)"><path fill={brandColor} d="M0 0h255v253H0z" transform="translate(.087 .472)"/><path fill={contrastColor} d="M15.563 1303.7 0 1319.233v62.025l15.563 15.5h62.286v30.995H46.723v-15.5H0v31.029l15.563 15.5h93.446l15.563-15.5v-62.024l-15.563-15.533H46.723v-31h31.126v15.5h46.723v-30.995l-15.563-15.53Z" transform="translate(64.794 -1254.311)"/></g></svg>

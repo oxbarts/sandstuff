@@ -1,0 +1,89 @@
+---
+import { Ethereum, Polygon, OpenSea, Sandbox, MiniCard as Card } from '@/components'
+import { buttonVariants } from '../ui/button.tsx'
+import { collections } from '@/data/official-avatar-collections.ts'
+---
+
+<div class="not-prose">
+  <div class="text-right">
+    Sort by
+    <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer' })}>
+      <input type="radio" name="sort" value="name" class="hidden invisible"/>
+      A-Z
+    </label>
+    or
+    <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer !text-emerald-600' })}>
+      <input type="radio" name="sort" value="date" class="hidden invisible"/>
+      newest first
+    </label>
+  </div>
+
+  <div id="collections" class="space-y-4 mt-4">
+    {collections.map((collection, i) => (
+      <Card title={collection.name} class="pb-2" data-collection data-date={i} data-name={collection.name}>
+        <dl>
+          <dt class="sr-only">Address</dt>
+          <dd class="truncate text-sm text-slate-500 flex items-center gap-1">
+            {collection.chain === 1 && <Ethereum class="size-3 grow-0 shrink-0"/>}
+            {collection.chain === 137 && <Polygon class="size-3 grow-0 shrink-0"/>}
+            <span class="flex-1 truncate">{collection.address}</span>
+          </dd>
+        </dl>
+
+        <div class="mt-5 flex items-center gap-6 text-[var(--tw-prose-links)] text-sm">
+          <a href={collection.tsbUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+            <Sandbox class="size-4"/>
+            <span class="hidden sm:inline">The&nbsp;Sandbox</span>
+          </a>
+          <a href={collection.osUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+            <OpenSea class="size-4"/>
+            <span class="hidden sm:inline">OpenSea</span>
+          </a>
+          {collection.chain === 1 && (
+            <a href={`https://etherscan.io/address/${collection.address}`} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+              <Ethereum class="size-4"/>
+              <span class="hidden sm:inline">Etherscan</span>
+            </a>
+          )}
+          {collection.chain === 137 && (
+            <a href={`https://polygonscan.com/address/${collection.address}`} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+              <Polygon class="size-4"/>
+              <span class="hidden sm:inline">Polygonscan</span>
+            </a>
+          )}
+        </div>
+      </Card>
+    ))}
+  </div>
+</div>
+
+<script>
+  const sorts = document.querySelectorAll<HTMLInputElement>('input[type=radio][name=sort]')
+  const container = document.getElementById('collections')!
+  const collections = Array.from(container?.querySelectorAll('[data-collection]') as NodeListOf<HTMLDivElement>)
+
+  function sortByDate(a: HTMLDivElement, b: HTMLDivElement) {
+    return parseInt(a.dataset.date!) - parseInt(b.dataset.date!)
+  }
+
+  function sortByName(a: HTMLDivElement, b: HTMLDivElement) {
+    return a.dataset.name!.localeCompare(b.dataset.name!)
+  }
+
+  function sortBy(field: string) {
+    if (field === 'name') {
+      return sortByName
+    }
+
+    return sortByDate
+  }
+
+  for (let sort of sorts) {
+    sort.addEventListener('change', () => {
+      collections.sort(sortBy(sort.value)).forEach(e => container.appendChild(e))
+      for (let s of sorts) {
+        s === sort ? s.parentElement!.classList.add('!text-emerald-600') : s.parentElement!.classList.remove('!text-emerald-600')
+      }
+    })
+  }
+</script>

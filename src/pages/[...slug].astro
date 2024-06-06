@@ -1,0 +1,41 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import type { GetStaticPaths } from "astro"
+import { getCollection, type CollectionEntry } from 'astro:content'
+import { ArrowLeft } from 'lucide-react'
+
+export const getStaticPaths = (async () => {
+  const stuff = await getCollection('stuff') as CollectionEntry<'stuff'>[]
+
+  return stuff.map(entry => ({
+    params: { slug: entry.slug }, props: { entry }
+  }))
+}) satisfies GetStaticPaths
+
+type Props = {
+  entry: CollectionEntry<'stuff'>
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+const lastUpdated = entry.data.lastUpdated || entry.data.created
+---
+
+<Layout title={`${entry.data.title} - Sandstuff`}>
+  <main class=" mt-16 px-6 pb-16">
+    <nav class="max-w-xl mx-auto pb-2">
+      <a href="/sandstuff/" class="inline-flex items-center text-slate-500 gap-2">
+        <ArrowLeft className="size-4 opacity-50"/>
+        Back home
+      </a>
+    </nav>
+    <article class="prose prose-sky prose-sm sm:prose-base dark:prose-invert max-w-xl mx-auto">
+      <h1>{entry.data.title}</h1>
+      <Content/>
+
+      <footer class="mt-16 text-right text-slate-500">
+        <div>Last updated on <time datetime={lastUpdated.toISOString()}>{lastUpdated.toLocaleDateString('en', { dateStyle: 'medium', timeZone: 'UTC' })}</time></div>
+      </footer>
+    </article>
+  </main>
+</Layout>

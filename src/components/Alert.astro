@@ -1,0 +1,26 @@
+---
+import { cn } from '@/lib/utils.ts'
+
+type Props = {
+  color: 'yellow',
+  title?: string,
+  class?: string,
+  titleClass?: string,
+}
+
+const { title, color = 'note', class: className = '', titleClass } = Astro.props
+
+const classes = cn('px-4 py-3 border-2 border-dashed rounded-lg not-prose', {
+  'bg-amber-100 border-amber-300': color === 'yellow',
+}, className)
+
+const titleClasses = 'text-lg font-semibold flex gap-2 pb-2'
+---
+
+<div class={classes}>
+  <div class={cn(titleClasses, titleClass)}>
+    {title}
+  </div>
+
+  <slot/>
+</div>

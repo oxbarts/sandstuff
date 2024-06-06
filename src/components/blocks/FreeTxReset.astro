@@ -1,0 +1,96 @@
+---
+import { FileJson, Search } from 'lucide-react'
+import { Textarea } from '@/components/ui/textarea.tsx'
+import { Button, buttonVariants } from '@/components/ui/button.tsx'
+import { cn } from '@/lib/utils.ts'
+---
+
+<div class="bg-slate-200/75 rounded-lg">
+  <div class="px-6 py-4">
+    <div class="font-semibold">1. Load and Analyze Data</div>
+    <div class="text-sm text-slate-600 mt-2 space-y-2">
+      <div>Make sure you are logged into the Sandbox website in your current browser. Click <i>Open Free Tx Info</i>, copy everything and paste it into the textfield. Then hit the <i>Analyze</i> button.</div>
+    </div>
+    <div class="mt-4">
+      <a href="https://api.sandbox.game/biconomy/check-limit/?account=general" class={cn(buttonVariants(), 'no-underline gap-2')} rel="noopener noreferrer" target="_blank">
+        <FileJson className="size-4"/>
+        Open Free Tx Info
+      </a>
+    </div>
+    <div class="mt-4">
+      <Textarea data-input placeholder="Paste copied data here!"/>
+    </div>
+    <div class="text-red-500 text-sm hidden" data-invalid-data>This data doesn't look quite right.</div>
+    <div class="mt-4">
+      <Button type='button' className="gap-2" data-analyze>
+        <Search className="size-4"/>
+        Analyze
+      </Button>
+    </div>
+  </div>
+</div>
+
+<div class="bg-slate-200/75 rounded-lg mt-6">
+  <div class="px-6 py-4">
+    <div class="font-semibold">2. Reveal Reset Date</div>
+    <div class="text-sm text-slate-600 mt-2 space-y-4" data-skeleton>
+      <div>The reset date will appear here after clicking <i>Analyze</i> above.</div>
+      <div class="rounded-lg border-2 border-slate-300 border-dashed h-12 mt-4"></div>
+    </div>
+    <div class="mt-4 hidden not-prose" data-result>
+      <div>Your free transactions will be reset on</div>
+      <div class="mt-4 text-center text-xl font-semibold"><time data-local-time></time></div>
+      <div class="text-center"><time data-time></time></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const dataInput = document.querySelector('[data-input]')! as HTMLTextAreaElement
+  const analyzeBtn = document.querySelector('[data-analyze]') as HTMLButtonElement
+  const timeOutput = document.querySelector('[data-time]') as HTMLButtonElement
+  const localTimeOutput = document.querySelector('[data-local-time]') as HTMLButtonElement
+  const invalidData = document.querySelector('[data-invalid-data]') as HTMLElement
+  const resultSection = document.querySelector('[data-result]') as HTMLElement
+  const skeletonSection = document.querySelector('[data-skeleton]') as HTMLElement
+
+  const sharedDateOpts: Intl.DateTimeFormatOptions = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }
+  const { format } = Intl.DateTimeFormat(undefined, sharedDateOpts)
+  const { format: formatUtc } = Intl.DateTimeFormat(undefined, { ...sharedDateOpts, timeZone: 'UTC' })
+
+  type FreeTxData = {
+    limitSet: boolean,
+    allowed: boolean,
+    transactionsLeft: number,
+    transactionLimit: number,
+    timeToReset: number,
+  }
+
+  function parseData(data: string) {
+    try {
+      const { timeToReset } = JSON.parse(data) as FreeTxData
+      if (!timeToReset) throw new Error()
+
+      return { result: timeToReset, error: false }
+    } catch (_err) {
+      return { result: 0, error: true }
+    }
+  }
+
+  analyzeBtn.addEventListener('click', () => {
+    invalidData.classList.add('hidden')
+    resultSection.classList.add('hidden')
+    skeletonSection.classList.remove('hidden')
+
+    const { result, error } = parseData(dataInput.value)
+    if (error) {
+      invalidData.classList.remove('hidden')
+      return
+    }
+
+    localTimeOutput.textContent = format(result)
+    timeOutput.textContent = formatUtc(result)
+    skeletonSection.classList.add('hidden')
+    resultSection.classList.remove('hidden')
+  })
+</script>

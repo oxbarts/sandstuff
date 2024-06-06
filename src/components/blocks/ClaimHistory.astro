@@ -1,0 +1,340 @@
+---
+import { Input } from '@/components/ui/input.tsx'
+import { Button, buttonVariants } from '@/components/ui/button.tsx'
+import { Textarea } from '@/components/ui/textarea.tsx'
+import { Banknote, CalendarClock, CornerDownRight, FileJson, Fingerprint, Image, Save, Search, Trash2, X } from 'lucide-react'
+import { cn } from '@/lib/utils.ts'
+import { rewardNfts } from '@/data/reward-nfts.ts'
+import MiniCard from '../MiniCard.astro'
+import { OpenSea, Sandbox } from '@/components'
+---
+
+<div class="hidden" data-known-nfts={JSON.stringify(rewardNfts)}></div>
+<div class="bg-slate-200/75 rounded-lg">
+  <div class="px-6 py-4">
+    <div class="font-semibold">1. Enter your Sandbox User ID</div>
+    <div class="text-sm text-slate-600 mt-2 space-y-2">
+      <div>Make sure you are logged into the Sandbox website in your current browser. Click <i>Open User Info</i>, copy your user ID (or just everything if you're not sure) and paste it in the text field below. You can choose to save it locally on your device for your next visit by clicking the disk.</div>
+      <div>A valid user ID looks like this: <b class=" text-nowrap">987feea4-a658-41ed-b080-10c10e786423</b></div>
+    </div>
+    <div class="mt-4">
+      <a href="https://api.sandbox.game/auth/isLoggedIn" class={cn(buttonVariants(), 'no-underline gap-2')} rel="noopener noreferrer" target="_blank">
+        <Fingerprint className="size-4"/>
+        Open User Info
+      </a>
+    </div>
+    <div class="flex w-full items-center gap-2 mt-4">
+      <div class="relative flex items-center grow">
+        <Input placeholder="Paste your user ID here!" id="user-id" className="pr-8"/>
+        <button type="button" class="absolute right-3" id="clear-user-id">
+          <X className="size-4"/>
+        </button>
+      </div>
+      <Button variant="outline" size="icon" className="shrink-0" id="save-user-id">
+        <Save className="size-4"/>
+      </Button>
+      <Button variant="outline" size="icon" className="shrink-0" id="trash-user-id">
+        <Trash2 className="size-4"/>
+      </Button>
+    </div>
+    <div class="text-red-500 text-sm hidden" id="invalid-user-id">This is not a valid user ID</div>
+  </div>
+</div>
+
+<div class="bg-slate-200/75 rounded-lg mt-6">
+  <div class="px-6 py-4">
+    <div class="font-semibold">2. Load and Analyze Data</div>
+    <div class="text-sm text-slate-600 mt-2 space-y-2">
+      <div>Click <i>Open Data</i> <b>after you have entered your user ID above</b>, copy everything and paste it into the textfield. Then hit the <i>Analyze</i> button.</div>
+    </div>
+    <div class="mt-4">
+      <Button id="open-data-window" className="gap-2">
+        <FileJson className="size-4"/>
+        Open Data
+      </Button>
+    </div>
+    <div class="mt-4">
+      <Textarea id="data" placeholder="Paste copied data here!"/>
+    </div>
+    <div class="text-red-500 text-sm hidden" id="invalid-data">This data doesn't look quite right.</div>
+    <div class="mt-4">
+      <Button id="analyze" className="gap-2">
+        <Search className="size-4"/>
+        Analyze
+      </Button>
+    </div>
+  </div>
+</div>
+
+<div class="bg-slate-200/75 rounded-lg mt-6">
+  <div class="px-6 py-4">
+    <div class="font-semibold">3. Review your claim history</div>
+    <div class="text-sm text-slate-600 mt-2 space-y-4" id="skeleton">
+      <div>Your claim history will appear here after clicking <i>Analyze</i> above.</div>
+      <div class="rounded-lg border-2 border-slate-300 border-dashed h-12 mt-4"></div>
+      <div class="rounded-lg border-2 border-slate-300 border-dashed h-12"></div>
+      <div class="rounded-lg border-2 border-slate-300 border-dashed h-12"></div>
+    </div>
+    <div class="mt-4 hidden space-y-4 not-prose" id="rewards">
+
+    </div>
+  </div>
+</div>
+
+<template id="reward-card-template">
+  <MiniCard title="" class="bg-white">
+    <dl>
+      <dt class="sr-only">Address</dt>
+      <dd class="text-sm text-slate-500 flex items-center gap-1">
+        <CalendarClock className="size-4 shrink-0 opacity-75"/>
+        <time data-date/>
+      </dd>
+    </dl>
+    <div class="mt-5 space-y-3" data-rewards/>
+  </MiniCard>
+</template>
+<template id="nft-reward-template">
+  <div class="flex gap-2">
+    <Image className="w-4 h-6 sm:h-7 stroke-emerald-600 shrink-0"/>
+    <div>
+      <div class="flex flex-wrap items-center gap-2" data-title></div>
+      <div class="flex items-center text-sm gap-3 sm:gap-4" data-links>
+        <CornerDownRight className="size-4 shrink-0 opacity-75 hidden sm:inline-block"/>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="sand-reward-template">
+  <div class="flex gap-2">
+    <Banknote className="w-4 h6 sm:h-7 stroke-amber-600 shrink-0"/>
+    <div>
+      <div data-title></div>
+    </div>
+  </div>
+</template>
+<template id="opensea-link-template">
+  <a class="group inline-flex items-center gap-1 text-sm opacity-75 hover:opacity-100 transition-opacity fill-black" target="_blank" rel="noopener noreferrer">
+    <OpenSea class="size-4 shrink-0 sm:opacity-75 group-hover:opacity-100"/>
+    <span>OpenSea</span>
+  </a>
+</template>
+<template id="sandbox-link-template">
+  <a class="group inline-flex items-center gap-1 text-sm opacity-75 hover:opacity-100 transition-opacity" target="_blank" rel="noopener noreferrer">
+    <Sandbox class="size-4 shrink-0 sm:opacity-75 group-hover:opacity-100"/>
+    <span>The&nbsp;Sandbox</span>
+  </a>
+</template>
+
+<script>
+  import { type RewardNft } from '@/data/reward-nfts.ts'
+  import { type RewardData } from '@/types/reward-nfts.ts'
+
+  const sandContract = '0xBbba073C31bF03b8ACf7c28EF0738DeCF3695683'.toLowerCase()
+  const esandContract = '0x3845badAde8e6dFF049820680d1F14bD3903a5d0'.toLowerCase()
+
+  const contractToChain = new Map(Object.entries({
+    [sandContract]: 137, // SAND
+    [esandContract]: 1, // SAND
+    '0xa342f5d851e866e18ff98f351f2c6637f4478db5': 1, // Assets
+    '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5': 137, // Assets
+    '0x1f980cfdf257792f2d85523094cd6b7210cab509': 137, // Catalysts
+    '0x9d305a42a3975ee4c1c57555bed5919889dce63f': 137, // LAND
+    '0x5cc5b05a8a13e3fbdb0bb9fccd98d38e50f90c38': 1, // LAND
+  }))
+
+  const userIdField = document.getElementById('user-id') as HTMLInputElement
+  const clearUserIdBtn = document.getElementById('clear-user-id')!
+  const saveUserIdBtn = document.getElementById('save-user-id')!
+  const trashUserIdBtn = document.getElementById('trash-user-id')!
+  const invalidUserId = document.getElementById('invalid-user-id')!
+  const openDataWindowBtn = document.getElementById('open-data-window')!
+  const knownNftsLoader = document.querySelector('[data-known-nfts]') as HTMLDivElement
+  const dataField = document.getElementById('data') as HTMLTextAreaElement
+  const invalidData = document.getElementById('invalid-data')!
+  const analyzeBtn = document.getElementById('analyze')!
+  const rewardCardTemplate = document.querySelector('#reward-card-template') as HTMLTemplateElement
+  const nftRewardTemplate = document.querySelector('#nft-reward-template') as HTMLTemplateElement
+  const sandRewardTemplate = document.querySelector('#sand-reward-template') as HTMLTemplateElement
+  const openseaLinkTemplate = document.querySelector('#opensea-link-template') as HTMLTemplateElement
+  const sandboxLinkTemplate = document.querySelector('#sandbox-link-template') as HTMLTemplateElement
+  const rewardsSection = document.querySelector('#rewards')!
+  const skeletonSection = document.querySelector('#skeleton')!
+
+  function init() {
+    const userId = localStorage.getItem('tsb-user-id')
+    if (userId) {
+      userIdField.value = userId
+      saveUserIdBtn.classList.add('text-emerald-600')
+    }
+  }
+  init()
+
+  const knownNfts = new Map((JSON.parse(knownNftsLoader.dataset.knownNfts!) as RewardNft[]).map(entry => [`${entry.contractAddress}/${entry.tokenId}`, entry]))
+
+  // const { format } = Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+  // const { format: formatLocal } = Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' })
+  const { format } = Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' })
+
+  function isValidUserId(userId: string) {
+    return /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/i.test(userId)
+  }
+
+  function toTsbSlug(name: string) {
+    return name.toLowerCase().replace(/[\s_-]+/g, '-')
+  }
+
+  function parseData(data: string) {
+    try {
+      const parsedData = JSON.parse(data) as RewardData
+
+      const result = parsedData.map(({ name, startDate, MultiGiveawayItems }) => ({
+        name,
+        startDate: new Date(startDate),
+        items: MultiGiveawayItems.map(i => {
+          const contractAddress = i.contractAddress.toLowerCase()
+
+          if (contractAddress === sandContract || contractAddress === esandContract) {
+            return {
+              name: 'SAND',
+              amount: Number(BigInt(i.amount)/BigInt(10**16)) / 100,
+              chain: contractToChain.get(contractAddress) || null,
+              contractAddress: i.contractAddress,
+              tokenId: i.tokenId,
+              tsbId: null,
+            }
+          }
+
+          const id = `${i.contractAddress}/${i.tokenId}`
+          const knownNft = knownNfts.get(id)
+
+          return {
+            name: knownNft?.name || i.Asset?.name || null,
+            amount: i.amount || 0,
+            chain: knownNft?.chain || contractToChain.get(contractAddress) || null,
+            contractAddress: i.contractAddress,
+            tokenId: i.tokenId,
+            tsbId: knownNft?.tsbId || i.Asset?.id || i.assetId || null,
+            tsbSlug: knownNft?.tsbSlug || (knownNft?.name && toTsbSlug(knownNft.name)) || (i.Asset?.name && toTsbSlug(i.Asset.name)) || null
+          }
+        })
+      }))
+
+      return { result, error: false }
+    } catch (_err) {
+      return { result: [], error: true }
+    }
+  }
+
+  const extractUserIdRegexp = /^.*?([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}).*$/mi
+  userIdField.addEventListener('blur', () => {
+    invalidUserId.classList.add('hidden')
+
+    if (userIdField.value === '') return
+    if (isValidUserId(userIdField.value)) return
+
+    const matches = userIdField.value.match(extractUserIdRegexp)
+    const userId = matches && matches[1]
+    if (!userId) {
+      invalidUserId.classList.remove('hidden')
+      return
+    }
+
+    userIdField.value = userId
+  })
+
+  clearUserIdBtn.addEventListener('click', () => {
+    userIdField.value = ""
+    invalidUserId.classList.add('hidden')
+  })
+
+  saveUserIdBtn.addEventListener('click', () => {
+    invalidUserId.classList.add('hidden')
+
+    if (!isValidUserId(userIdField.value)) {
+      invalidUserId.classList.remove('hidden')
+      return
+    }
+
+    localStorage.setItem('tsb-user-id', userIdField.value)
+    saveUserIdBtn.classList.add('text-emerald-600')
+  })
+
+  trashUserIdBtn.addEventListener('click', () => {
+    localStorage.removeItem('tsb-user-id')
+    saveUserIdBtn.classList.remove('text-emerald-600')
+  })
+
+  openDataWindowBtn.addEventListener('click', () => {
+    invalidUserId.classList.add('hidden')
+
+    if (!isValidUserId(userIdField.value)) {
+      invalidUserId.classList.remove('hidden')
+      return
+    }
+
+    window.open(`https://api.sandbox.game/assetclaims/search?userId=${userIdField.value}`, '_blank', 'noopener,noreferrer')
+  })
+
+  analyzeBtn.addEventListener('click', () => {
+    invalidData.classList.add('hidden')
+    skeletonSection.classList.remove('hidden')
+    rewardsSection.classList.add('hidden')
+    while (rewardsSection.firstChild) {
+      rewardsSection.removeChild(rewardsSection.firstChild)
+    }
+
+    const { result: data, error } = parseData(dataField.value)
+    if (error) {
+      invalidData.classList.remove('hidden')
+      return
+    }
+
+    data.forEach((i, k) => {
+      const el = rewardCardTemplate.content.cloneNode(true) as HTMLElement
+
+      el.querySelector('div :first-child')!.textContent = `#${k+1} ${i.name}`
+      const date = el.querySelector('[data-date]') as HTMLTimeElement
+      date.textContent = format(i.startDate)
+      date.dateTime = i.startDate.toISOString()
+
+      const content = el.querySelector('[data-rewards]')!
+
+      i.items.forEach(r => {
+        if (r.name === 'SAND') {
+          const el = sandRewardTemplate.content.cloneNode(true) as HTMLElement
+          el.querySelector('[data-title')!.textContent = `${r.amount} ${r.name}`
+          content.appendChild(el)
+          return
+        }
+
+        const el = nftRewardTemplate.content.cloneNode(true) as HTMLElement
+        el.querySelector('[data-title]')!.textContent = r.name ? `${r.amount}x ${r.name}` : `${r.amount}x unknown NFT (check on OpenSea)`
+
+        const links = el.querySelector('[data-links]')!
+
+        if (r.chain && (r.chain === 1 || r.chain === 137)) {
+          const openseaLink = openseaLinkTemplate.content.cloneNode(true) as HTMLAnchorElement
+          openseaLink.querySelector('a')!.href = `https://opensea.io/assets/${r.chain === 1 ? 'ethereum' : 'matic'}/${r.contractAddress}/${r.tokenId}`
+          links.appendChild(openseaLink)
+        }
+
+        if (r.tsbId && r.tsbSlug) {
+          const sandboxLink = sandboxLinkTemplate.content.cloneNode(true) as HTMLAnchorElement
+          sandboxLink.querySelector('a')!.href = `https://www.sandbox.game/en/assets/${r.tsbSlug}/${r.tsbId}/`
+          links.appendChild(sandboxLink)
+        }
+
+        if (links.childNodes.length === 1) {
+          links.remove()
+        }
+
+        content.appendChild(el)
+      })
+
+      rewardsSection.appendChild(el)
+    })
+
+    skeletonSection.classList.add('hidden')
+    rewardsSection.classList.remove('hidden')
+  })
+</script>

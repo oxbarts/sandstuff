@@ -1,0 +1,36 @@
+---
+title: Free Transaction Reset Checker
+created: 2024-06-04
+lastUpdated: 2024-06-06
+category: tool
+---
+
+import { ChevronsRight } from 'lucide-react'
+import { Callout, Spacer } from '@/components'
+import FreeTxReset from '@/components/blocks/FreeTxReset.astro'
+
+You get 10 free transactions from The Sandbox on Polygon every 30(ish) days. This tool let's you check when your free transactions will be refilled.
+
+<Callout>
+<p>TSB has built this feature into their website now, but it only works as long as you still have free transactions left. Does this even make sense?</p>
+</Callout>
+
+<Spacer size='xl'/>
+
+<FreeTxReset/>
+
+<Spacer/>
+
+## How to find out WEN your free transactions will reset manually
+
+So you wanna know when your 10 free monthly transactions will be reset and don't want to use my tool? Here you go!
+
+1. On the Sandbox website, click on your profile pic and navicate to **Settings > Wallet**. This link will also take you to the <a href="https://www.sandbox.game/en/me/settings/blockchain/" target="_blank" rel="noopener noreferrer">Wallet Settings</a>.
+2. Press <kbd>F12</kbd> to open Chrome DevTools and go to the **Network** tab.
+
+   ![](@/assets/devtools-network-tab.webp)
+
+   The Network tab sometimes hides behind the double arrow <ChevronsRight className="size-4 inline-block"/>. Just click on it and you'll find the tab.
+3. Type <kbd>account</kbd> in the Filter text box and select Fetch/XHR, then reload the page.
+4. Next, click the entry names **check-limit/?account=general** and you'll find the reset time as timestamp (milliseconds sicne Jan 1st, 1970, UTC). You can translate that to a human-readable format with a timestamp converter, that you can find with your favorite search engine.
+   ![](@/assets/devtools-check-limit.webp)

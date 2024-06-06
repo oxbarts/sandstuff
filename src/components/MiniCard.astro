@@ -1,0 +1,12 @@
+---
+import { cn } from '@/lib/utils.ts'
+
+const { title, class: className, ...props } = Astro.props
+---
+
+<div {...props} class={cn('border border-slate-300 dark:border-slate-700 p-3 rounded-lg', className)} >
+  <div class="font-semibold leading-5">{title}</div>
+  <div class="mt-2">
+    <slot/>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+---
+import { X, Youtube, Github } from '@/components'
+import { buttonVariants } from './ui/button.tsx'
+import { socials } from '@/constants.ts'
+import { cn } from '@/lib/utils.ts'
+---
+
+<a href={socials.x} class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}><X class="size-4" brandColor='currentColor'/></a>
+<a href={socials.youtube} class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}><Youtube class="size-4"  brandColor='currentColor'/></a>
+<a href={socials.github} class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}><Github class="size-4"  brandColor='currentColor'/></a>

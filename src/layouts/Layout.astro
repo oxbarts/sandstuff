@@ -1,0 +1,62 @@
+---
+import { site } from '@/constants.ts'
+import { SocialLinks } from '@/components'
+import { Image } from 'astro:assets'
+import astronaut from '@/assets/astronaut.webp'
+
+const base = '/sandstuff/' // import.meta.env.BASE_URL
+
+type Props = {
+	title?: string
+	description?: string
+}
+
+const { title, description } = Astro.props
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : ''
+const socialImage = '/sandstuff/sandstuff-social.webp'
+
+import '@/styles.css'
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width"/>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧑‍🚀</text></svg>"/>
+		<meta name="generator" content={Astro.generator}/>
+		{canonicalURL && <link rel="canonical" href={canonicalURL}/>}
+		<title>{title}</title>
+		<meta name="description" content="Astro description"/>
+		<meta name="author" content="Oxbarts"/>
+		<meta property="og:type" content="website"/>
+		<meta property="og:url" content={Astro.url}/>
+		<meta property="og:title" content={title || site.title}/>
+		<meta property="og:description" content={description || site.description}/>
+		<meta property="og:image" content={new URL(socialImage, Astro.url)}/>
+		<meta property="twitter:card" content="summary_large_image"/>
+		<meta property="twitter:url" content={Astro.url}/>
+		<meta property="twitter:title" content={title}/>
+		<meta property="twitter:description" content={description}/>
+		<meta property="twitter:image" content={new URL(socialImage, Astro.url)}/>
+	</head>
+	<body>
+		<div class="absolute inset-x-0 top-12 overflow-hidden isolate -z-10">
+			<Image src={astronaut} alt="" class="left-1/3 sm:left-1/2 md:ml-12 lg:ml-36 relative opacity-25 object-contain w-2/3 min-w-[450px] max-w-xl aspect-square"/>
+		</div>
+		<div class="min-h-screen">
+			<header class="px-6">
+				<div class="max-w-5xl mx-auto flex items-center justify-between h-12">
+					<a href={`${base}`} class="uppercase tracking-wide font-semibold text-nowrap"><span class="hidden sm:inline">🧑‍🚀 Oxbarts</span><span class="sm:hidden">🧑‍🚀</span>/<span class="text-sky-500">Sandstuff</span></a>
+
+					<div class="flex items-center">
+						<SocialLinks/>
+					</div>
+				</div>
+			</header>
+
+			<slot/>
+		</div>
+		<footer></footer>
+	</body>
+</html>

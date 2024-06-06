@@ -1,0 +1,19 @@
+---
+import { cn } from '@/lib/utils.ts'
+
+type Props = {
+  size?: 'base' | 'sm' | 'lg' | 'xl',
+  class?: string
+}
+
+const { size = 'base', class: className } = Astro.props
+
+const styles = cn({
+  'h-2': size === 'sm',
+  'h-4': size === 'base',
+  'h-8': size === 'lg',
+  'h-12': size === 'xl',
+}, className)
+---
+
+<div class={styles}/>

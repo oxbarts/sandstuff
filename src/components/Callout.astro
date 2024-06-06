@@ -1,0 +1,46 @@
+---
+import { cn } from '@/lib/utils.ts'
+import { Info, OctagonAlert, Rocket, TriangleAlert } from 'lucide-react'
+
+type Props = {
+  type: 'note' | 'warning' | 'tip' | 'danger'
+  title?: string
+  class?: string
+}
+
+const { title, type = 'note', class: className = '' } = Astro.props
+
+const classes = cn('px-4 py-3 border-2 rounded-lg not-prose', {
+  'bg-blue-100 border-blue-200': type === 'note',
+  'bg-amber-100 border-amber-200': type === 'warning',
+  'bg-purple-100 border-purple-200': type === 'tip',
+  'bg-rose-100 border-rose-200': type === 'danger'
+}, className)
+
+const titleClasses = 'text-lg font-semibold flex gap-2 pb-2'
+---
+
+<div class={classes}>
+  {type === 'note' && (
+    <div class={cn(titleClasses, 'text-blue-950')}>
+      <Info className="size-6 h-7 shrink-0"/> {title || 'Note'}
+    </div>
+  )}
+  {type === 'warning' && (
+    <div class={cn(titleClasses, 'text-amber-950')}>
+      <TriangleAlert className="size-6 h-7 shrink-0"/> {title || 'Watch out!'}
+    </div>
+  )}
+  {type === 'tip' && (
+    <div class={cn(titleClasses, 'text-purple-950')}>
+      <Rocket className="size-6 h-7 shrink-0"/> {title || 'Tip'}
+    </div>
+  )}
+  {type === 'danger' && (
+    <div class={cn(titleClasses, 'text-rose-950')}>
+      <OctagonAlert className="size-6 h-7 shrink-0"/> {title || 'Danger'}
+    </div>
+  )}
+
+  <slot/>
+</div>
