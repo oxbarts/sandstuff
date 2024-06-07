@@ -1,6 +1,6 @@
 export const site = {
-  title: 'oxbarts/sandstuff',
-  description: '',
+  title: 'Sandstuff: Guides, resources and tools for Sandbox players.',
+  description: 'Guides, resources and tools for Sandbox players.',
 }
 
 export const socials = {

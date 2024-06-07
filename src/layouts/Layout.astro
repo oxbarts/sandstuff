@@ -27,17 +27,18 @@ import '@/styles.css'
 		<meta name="generator" content={Astro.generator}/>
 		{canonicalURL && <link rel="canonical" href={canonicalURL}/>}
 		<title>{title}</title>
-		<meta name="description" content="Astro description"/>
+		<meta name="description" content={description || site.description}/>
 		<meta name="author" content="Oxbarts"/>
-		<meta property="og:type" content="website"/>
 		<meta property="og:url" content={Astro.url}/>
+		<meta property="og:type" content="website"/>
 		<meta property="og:title" content={title || site.title}/>
 		<meta property="og:description" content={description || site.description}/>
 		<meta property="og:image" content={new URL(socialImage, Astro.url)}/>
 		<meta property="twitter:card" content="summary_large_image"/>
+		<meta property="twitter:domain" content="oxbarts.github.io">
 		<meta property="twitter:url" content={Astro.url}/>
-		<meta property="twitter:title" content={title}/>
-		<meta property="twitter:description" content={description}/>
+		<meta property="twitter:title" content={title || site.title}/>
+		<meta property="twitter:description" content={description || site.description}/>
 		<meta property="twitter:image" content={new URL(socialImage, Astro.url)}/>
 	</head>
 	<body>
