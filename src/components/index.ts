@@ -1,3 +1,4 @@
+export { default as Alert } from './Alert.astro'
 export { default as Callout } from './Callout.astro'
 export { default as CategoryIcon } from './CategoryIcon.astro'
 export { default as Container } from './Container.astro'

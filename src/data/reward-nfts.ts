@@ -470,4 +470,18 @@ export const rewardNfts: RewardNft[] = [
     tokenId: '24665471532968575398142142148984974629632714369389575626',
     tsbId: 'd3efc281-34c0-4688-a34d-43a7508500fe',
   },
+  {
+    name: 'The Voice - Power Mic',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24674825143447493176818645731914358840958512337664622026',
+    tsbId: 'aa20dfe3-8272-4c2b-bb78-248550b841bf',
+  },
+  {
+    name: 'The Voice - Microphone',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24675199287866649887965705875231534209411544256395623882',
+    tsbId: '59eb5310-8776-4b6f-8462-8fd98a39f09f',
+  },
 ]

@@ -8,7 +8,7 @@ type Props = {
   titleClass?: string,
 }
 
-const { title, color = 'note', class: className = '', titleClass } = Astro.props
+const { title, color = 'yellow', class: className = '', titleClass } = Astro.props
 
 const classes = cn('px-4 py-3 border-2 border-dashed rounded-lg not-prose', {
   'bg-amber-100 border-amber-300': color === 'yellow',
