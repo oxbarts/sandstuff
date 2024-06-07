@@ -254,6 +254,34 @@ export const rewardNfts: RewardNft[] = [
     tsbId: 'b7c06e39-e355-4b25-9061-c870e3dc9e5f',
   },
   {
+    name: 'Mr. Playboy - Playboy',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24629927813148687839171428533853314626594682089944399306',
+    tsbId: '51567589-c356-4ad5-893b-8a1bb422a0eb',
+  },
+  {
+    name: 'Playboy Shield - Playboy',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24631050246406157972612608963804840731953777846137404874',
+    tsbId: '77471fd4-9f52-4ab9-81a5-75bbcd735785',
+  },
+  {
+    name: 'Playboy Shield / Playboy',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24672580276932552909936284872011306630240320825278610890',
+    tsbId: 'e6a0f2d3-03e4-474b-85b8-ad61dee0db3f',
+  },
+  {
+    name: 'Mr. Playboy / Playboy',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24672206132513396198789224728694131261787288906547609034',
+    tsbId: 'c31ada90-d8b8-42b4-8521-c5b7e9e6c0d0',
+  },
+  {
     name: 'Rabbids Heart Balloon',
     chain: 137,
     contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
@@ -357,5 +385,89 @@ export const rewardNfts: RewardNft[] = [
     contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
     tokenId: '24671831988094239487642164585376955893334256987816607178',
     tsbId: '1d518089-9131-46c5-b2bb-131dc5766e1c'
+  },
+  {
+    name: 'The Lightbringers Armband',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24673702710190023043377465301962832735599416581471616458',
+    tsbId: '2c5121dd-986a-415a-b218-867810786ec5'
+  },
+  {
+    name: 'The Lightbringers Rod',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24672954421351709621083345015328481998693352744009612746',
+    tsbId: '924fa717-26b8-4674-8fd2-6a0c293366d8'
+  },
+  {
+    name: 'The Lightbringers Backpack',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24673328565770866332230405158645657367146384662740614602',
+    tsbId: 'a1e2d5c3-a8c9-471c-96f7-ee3c6170705b'
+  },
+  {
+    name: 'Stygian Skull Altar - Omnimorphs',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24617206902897359660171383661069352099191596853090336202',
+    tsbId: '098ff508-5213-486e-9263-df81a0dd19ec'
+  },
+  {
+    name: 'Kiem’s Dagger - Omnimorphs',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24617955191735673082465503947703702836097660690552339914',
+    tsbId: '98312f5b-3cc2-4049-996b-0670ecd1f77b',
+  },
+  {
+    name: 'Elenda’s Medicine Table - Omnimorphs',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24618703480573986504759624234338053573003724528014343626',
+    tsbId: '222a2fab-4b23-4161-9b05-3a34f5f13bea',
+  },
+  {
+    name: 'Palace Guard’s Armour - Omnimorphs',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24618329336154829793612564091020878204550692609283341770',
+    tsbId: '123e476b-36a7-449c-901f-e39f36d81c1d',
+  },
+  {
+    name: 'MetaCarnival VIP Pass - AIA Carnival',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24621322491508083482789045237558281152174947959131356618',
+    tsbId: 'cc5768d9-1475-48e1-a22d-a866d24d1e60',
+  },
+  {
+    name: 'Infinity Flail - Omnimorphs',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24619077624993143215906684377655228941456756446745345482',
+    tsbId: '8cbf8c46-b849-4d8f-bc11-3e97a5c1d3b4',
+  },
+  {
+    name: 'Shadow Fox - Omnimorphs',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24617581047316516371318443804386527467644628771821338058',
+    tsbId: '94d1b750-e4bc-4e24-b16e-8073ba83a5fe',
+  },
+  {
+    name: 'Clays After Dark Sign',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24665845677387732109289202292302149998085746288120577482',
+    tsbId: 'b1b5012e-a209-4d16-bfc8-1333557d57a1',
+  },
+  {
+    name: 'Lotus Creature',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24665471532968575398142142148984974629632714369389575626',
+    tsbId: 'd3efc281-34c0-4688-a34d-43a7508500fe',
   },
 ]
