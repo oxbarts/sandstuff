@@ -1,0 +1,86 @@
+---
+import { Ethereum, Polygon, OpenSea, Sandbox, MiniCard as Card } from '@/components'
+import { buttonVariants } from '../ui/button.tsx'
+import { rewardNfts } from '@/data/reward-nfts.ts'
+
+const nfts = rewardNfts.toReversed().map(nft => ({
+  ...nft,
+  tsbUrl: `https://www.sandbox.game/en/assets/${nft.tsbSlug}/${nft.tsbId}/`,
+  osUrl: `https://opensea.io/assets/${nft.chain === 1 ? 'ethereum' : 'matic'}/${nft.contractAddress}/${nft.tokenId}`,
+}))
+---
+
+<div class="not-prose">
+  <div class="text-right">
+    Sort by
+    <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer' })}>
+      <input type="radio" name="sort" value="name" class="hidden invisible"/>
+      A-Z
+    </label>
+    or
+    <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer !text-emerald-600' })}>
+      <input type="radio" name="sort" value="date" class="hidden invisible"/>
+      newest first
+    </label>
+  </div>
+
+  <div data-nfts class="space-y-4 mt-4">
+    {nfts.map((nft, i) => (
+      <Card title={nft.name} class="pb-2" data-nft data-date={i} data-name={nft.name}>
+        <div class="mt-5 flex items-center gap-6 text-[var(--tw-prose-links)] text-sm">
+          <a href={nft.tsbUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+            <Sandbox class="size-4"/>
+            <span class="hidden sm:inline">The&nbsp;Sandbox</span>
+          </a>
+          <a href={nft.osUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+            <OpenSea class="size-4"/>
+            <span class="hidden sm:inline">OpenSea</span>
+          </a>
+          {nft.chain === 1 && (
+            <a href={`https://etherscan.io/nft/${nft.contractAddress}/${nft.tokenId}`} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+              <Ethereum class="size-4"/>
+              <span class="hidden sm:inline">Etherscan</span>
+            </a>
+          )}
+          {nft.chain === 137 && (
+            <a href={`https://polygonscan.com/nft/${nft.contractAddress}/${nft.tokenId}`} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+              <Polygon class="size-4"/>
+              <span class="hidden sm:inline">Polygonscan</span>
+            </a>
+          )}
+        </div>
+      </Card>
+    ))}
+  </div>
+</div>
+
+<script>
+  const sorts = document.querySelectorAll<HTMLInputElement>('input[type=radio][name=sort]')
+  const container = document.querySelector('[data-nfts]')!
+  const collections = Array.from(container.querySelectorAll('[data-nft]') as NodeListOf<HTMLDivElement>)
+
+  function sortByDate(a: HTMLDivElement, b: HTMLDivElement) {
+    return parseInt(a.dataset.date!) - parseInt(b.dataset.date!)
+  }
+
+  function sortByName(a: HTMLDivElement, b: HTMLDivElement) {
+    return a.dataset.name!.localeCompare(b.dataset.name!)
+  }
+
+  function sortBy(field: string) {
+    if (field === 'name') {
+      return sortByName
+    }
+
+    return sortByDate
+  }
+
+  for (let sort of sorts) {
+    sort.addEventListener('change', () => {
+      collections.sort(sortBy(sort.value)).forEach(e => container.appendChild(e))
+      for (let s of sorts) {
+        s === sort ? s.parentElement!.classList.add('!text-emerald-600') : s.parentElement!.classList.remove('!text-emerald-600')
+      }
+    })
+  }
+</script>

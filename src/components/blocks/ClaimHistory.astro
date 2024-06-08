@@ -172,8 +172,6 @@ import { OpenSea, Sandbox } from '@/components'
 
   const knownNfts = new Map((JSON.parse(knownNftsLoader.dataset.knownNfts!) as RewardNft[]).map(entry => [`${entry.contractAddress}/${entry.tokenId}`, entry]))
 
-  // const { format } = Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
-  // const { format: formatLocal } = Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' })
   const { format } = Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' })
 
   function isValidUserId(userId: string) {

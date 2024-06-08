@@ -4,23 +4,33 @@ import { getCollection } from 'astro:content'
 
 const stuff = (await getCollection('stuff', ({ data }) => data.draft !== true && data.hidden !== true)).sort((a, b) => +b.data.created - +a.data.created)
 
+const sections = [
+  { title: 'Tools', entries: stuff.filter(s => s.data.category === 'tools') },
+  { title: 'Resources', entries: stuff.filter(s => s.data.category === 'resources') },
+  { title: 'Guides', entries: stuff.filter(s => s.data.category === 'guides') },
+  { title: 'Posts', entries: stuff.filter(s => s.data.category === 'posts') },
+]
+
 const base = import.meta.env.BASE_URL
 ---
 
-<div class="mt-16 max-w-xl mx-auto">
-  <div class="flex items-center gap-2 font-semibold">
-    Stuff
-  </div>
+{sections.map(({ title, entries }) => entries.length > 0 && (
+    <div class="mt-16 max-w-xl mx-auto">
+      <div class="flex items-center gap-2 font-semibold">
+        {title}
+      </div>
 
-  <div class="prose prose-sm prose-sky sm:prose-base dark:prose-invert mt-4 space-y-4" id="stuff">
-    {stuff.map(entry => (
-      <article class="flex items-start gap-2">
-        <ArrowRight className="size-4 h-7 shrink-0 opacity-75"/>
-        <a href={`${base}${entry.slug}/`}>{entry.data.title}</a>
-      </article>
-    ))}
-  </div>
-</div>
+      <div class="prose prose-sm prose-sky sm:prose-base dark:prose-invert mt-4 space-y-4" id="stuff">
+        {entries.map(entry => (
+          <article class="flex items-start gap-2">
+            <ArrowRight className="size-4 h-7 shrink-0 opacity-75"/>
+            <a href={`${base}${entry.slug}/`}>{entry.data.title}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  )
+)}
 
 <div class="mt-16 max-w-xl mx-auto">
   <div class="flex items-center gap-2 font-semibold">
