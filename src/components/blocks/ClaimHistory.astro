@@ -128,6 +128,7 @@ import { OpenSea, Sandbox } from '@/components'
 <script>
   import { type RewardNft } from '@/data/reward-nfts.ts'
   import { type RewardData } from '@/types/reward-nfts.ts'
+  import { toSlug } from '@/lib/utils.ts'
 
   const sandContract = '0xBbba073C31bF03b8ACf7c28EF0738DeCF3695683'.toLowerCase()
   const esandContract = '0x3845badAde8e6dFF049820680d1F14bD3903a5d0'.toLowerCase()
@@ -179,10 +180,6 @@ import { OpenSea, Sandbox } from '@/components'
     return /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[4][0-9a-fA-F]{3}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/i.test(userId)
   }
 
-  function toTsbSlug(name: string) {
-    return name.toLowerCase().replace(/[\s_-]+/g, '-')
-  }
-
   function parseData(data: string) {
     try {
       const parsedData = JSON.parse(data) as RewardData
@@ -214,7 +211,7 @@ import { OpenSea, Sandbox } from '@/components'
             contractAddress: i.contractAddress,
             tokenId: i.tokenId,
             tsbId: knownNft?.tsbId || i.Asset?.id || i.assetId || null,
-            tsbSlug: knownNft?.tsbSlug || (knownNft?.name && toTsbSlug(knownNft.name)) || (i.Asset?.name && toTsbSlug(i.Asset.name)) || null
+            tsbSlug: knownNft?.tsbSlug || (knownNft?.name && toSlug(knownNft.name)) || (i.Asset?.name && toSlug(i.Asset.name)) || null
           }
         })
       }))
