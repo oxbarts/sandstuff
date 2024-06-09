@@ -2,6 +2,7 @@
 import { Ethereum, Polygon, OpenSea, Sandbox, MiniCard as Card } from '@/components'
 import { buttonVariants } from '../ui/button.tsx'
 import { rewardNfts } from '@/data/reward-nfts.ts'
+import { Image, Info, Square, SquareCheckBig } from 'lucide-react'
 
 const nfts = rewardNfts.toReversed().map(nft => ({
   ...nft,
@@ -11,44 +12,65 @@ const nfts = rewardNfts.toReversed().map(nft => ({
 ---
 
 <div class="not-prose">
-  <div class="text-right">
-    Sort by
-    <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer' })}>
-      <input type="radio" name="sort" value="name" class="hidden invisible"/>
-      A-Z
-    </label>
-    or
-    <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer !text-emerald-600' })}>
-      <input type="radio" name="sort" value="date" class="hidden invisible"/>
-      newest first
-    </label>
+  <div class="flex flex-col-reverse sm:flex-row gap-2 items-end sm:items-center justify-between peer">
+    <div class="flex items-center gap-2">
+      <label class="flex items-center gap-2">
+        <input type="checkbox" name="show-images" class="peer/local hidden">
+        <Square className="size-6 opacity-50 peer-checked/local:hidden inline-block"/>
+        <SquareCheckBig className="size-6 hidden peer-checked/local:inline-block text-emerald-600"/>
+        Load previews from sandbox.game
+      </label>
+      <span class="select-none" title="Disabled by default because the Sandbox is quick on rate limiting.&#10;This might lead to a 60 min ban from the website ;-)"><Info className="size-4"/></span>
+    </div>
+    <div>
+      Sort by
+      <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer' })}>
+        <input type="radio" name="sort" value="name" class="hidden invisible"/>
+        A-Z
+      </label>
+      or
+      <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer !text-emerald-600' })}>
+        <input type="radio" name="sort" value="date" class="hidden invisible"/>
+        newest first
+      </label>
+    </div>
   </div>
 
-  <div data-nfts class="space-y-4 mt-4">
+  <div data-nfts class="space-y-4 mt-4 peer-[:has([name=show-images]:checked)] group">
     {nfts.map((nft, i) => (
-      <Card title={nft.name} class="pb-2" data-nft data-date={i} data-name={nft.name}>
-        <div class="mt-5 flex items-center gap-6 text-[var(--tw-prose-links)] text-sm">
-          <a href={nft.tsbUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
-            <Sandbox class="size-4"/>
-            <span class="hidden sm:inline">The&nbsp;Sandbox</span>
-          </a>
-          <a href={nft.osUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
-            <OpenSea class="size-4"/>
-            <span class="hidden sm:inline">OpenSea</span>
-          </a>
-          {nft.chain === 1 && (
-            <a href={`https://etherscan.io/nft/${nft.contractAddress}/${nft.tokenId}`} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
-              <Ethereum class="size-4"/>
-              <span class="hidden sm:inline">Etherscan</span>
-            </a>
-          )}
-          {nft.chain === 137 && (
-            <a href={`https://polygonscan.com/nft/${nft.contractAddress}/${nft.tokenId}`} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
-              <Polygon class="size-4"/>
-              <span class="hidden sm:inline">Polygonscan</span>
-            </a>
-          )}
+      <Card class="pb-2" data-nft data-date={i} data-name={nft.name}>
+        <div class="flex flex-row-reverse gap-2">
+          <div data-image-placeholder class="h-12 w-14 shrink-0 object-contain border rounded p-1 flex items-center justify-center peer-[:has([name=show-images]:checked)]:group-[]:hidden">
+            <Image className="size-10 opacity-30"/>
+          </div>
+          <img data-image src={`https://api.sandbox.game/assets/public/${nft.tsbId}/preview`} alt="" class="h-12 w-14 shrink-0 object-contain border rounded p-1 hidden peer-[:has([name=show-images]:checked)]:group-[]:block" width="56" height="48" loading="lazy" referrerpolicy="no-referrer"/>
+          <div class="flex-1">
+            <div class="font-semibold leading-5">{nft.name}</div>
+            <div class="mt-3 flex items-center gap-6 text-[var(--tw-prose-links)] text-sm">
+              <a href={nft.tsbUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+                <Sandbox class="size-4"/>
+                <span class="hidden sm:inline">The&nbsp;Sandbox</span>
+              </a>
+              <a href={nft.osUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+                <OpenSea class="size-4"/>
+                <span class="hidden sm:inline">OpenSea</span>
+              </a>
+              {nft.chain === 1 && (
+                <a href={`https://etherscan.io/nft/${nft.contractAddress}/${nft.tokenId}`} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+                  <Ethereum class="size-4"/>
+                  <span class="hidden sm:inline">Etherscan</span>
+                </a>
+              )}
+              {nft.chain === 137 && (
+                <a href={`https://polygonscan.com/nft/${nft.contractAddress}/${nft.tokenId}`} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+                  <Polygon class="size-4"/>
+                  <span class="hidden sm:inline">Polygonscan</span>
+                </a>
+              )}
+            </div>
+          </div>
         </div>
+
       </Card>
     ))}
   </div>
