@@ -11,6 +11,8 @@ const sections = [
   { title: 'Posts', entries: stuff.filter(s => s.data.category === 'posts') },
 ]
 
+const offtopic = stuff.filter(s => s.data.category === 'off-topic')
+
 const base = import.meta.env.BASE_URL
 ---
 
@@ -40,7 +42,24 @@ const base = import.meta.env.BASE_URL
   <div class="prose prose-sm prose-sky sm:prose-base dark:prose-invert mt-4 space-y-4" id="stuff">
     <article class="flex items-start gap-2">
       <ArrowRight className="size-4 h-7 shrink-0 opacity-75"/>
-      <div>Vodact's <a href="https://www.vodact.com/sandbox/quiz-answers.html" rel="noopener">Quiz answers</a> for many experiences
+      <div>Vodact's <a href="https://www.vodact.com/sandbox/quiz-answers.html" rel="noopener">Quiz answers</a> for many experiences. And while you're there, his other tools are great, too!</div>
     </article>
   </div>
 </div>
+
+{offtopic.length > 0 && (
+  <div class="mt-16 max-w-xl mx-auto">
+      <div class="flex items-center gap-2 font-semibold">
+        Off-Topic
+      </div>
+
+      <div class="prose prose-sm prose-sky sm:prose-base dark:prose-invert mt-4 space-y-4" id="stuff">
+        {offtopic.map(entry => (
+          <article class="flex items-start gap-2">
+            <ArrowRight className="size-4 h-7 shrink-0 opacity-75"/>
+            <a href={`${base}${entry.slug}/`}>{entry.data.title}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+)}
