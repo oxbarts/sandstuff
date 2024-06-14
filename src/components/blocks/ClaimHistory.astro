@@ -83,13 +83,16 @@ import { OpenSea, Sandbox } from '@/components'
 
 <template id="reward-card-template">
   <MiniCard title="" class="bg-white">
-    <dl>
-      <dt class="sr-only">Address</dt>
-      <dd class="text-sm text-slate-500 flex items-center gap-1">
-        <CalendarClock className="size-4 shrink-0 opacity-75"/>
-        <time data-date/>
-      </dd>
-    </dl>
+    <div class="font-semibold leading-5" data-title/>
+    <div class="mt-2">
+      <dl>
+        <dt class="sr-only">Address</dt>
+        <dd class="text-sm text-slate-500 flex items-center gap-1">
+          <CalendarClock className="size-4 shrink-0 opacity-75"/>
+          <time data-date></time>
+        </dd>
+      </dl>
+    </div>
     <div class="mt-5 space-y-3" data-rewards/>
   </MiniCard>
 </template>
@@ -287,7 +290,8 @@ import { OpenSea, Sandbox } from '@/components'
     data.forEach((i, k) => {
       const el = rewardCardTemplate.content.cloneNode(true) as HTMLElement
 
-      el.querySelector('div :first-child')!.textContent = `#${k+1} ${i.name}`
+      el.querySelector('[data-title]')!.textContent = `#${k+1} ${i.name}`
+      console.log(el)
       const date = el.querySelector('[data-date]') as HTMLTimeElement
       date.textContent = format(i.startDate)
       date.dateTime = i.startDate.toISOString()
