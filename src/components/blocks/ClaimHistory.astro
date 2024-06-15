@@ -75,14 +75,28 @@ import { OpenSea, Sandbox } from '@/components'
       <div class="rounded-lg border-2 border-slate-300 border-dashed h-12"></div>
       <div class="rounded-lg border-2 border-slate-300 border-dashed h-12"></div>
     </div>
-    <div class="mt-4 hidden space-y-4 not-prose" id="rewards">
-
+    <div class="flex flex-col-reverse">
+      <div class="mt-2 hidden space-y-4 not-prose peer/rewards" id="rewards"></div>
+      <div class="mt-4 flex flex-col-reverse sm:flex-row gap-2 items-end sm:items-center justify-end peer peer-[.hidden]/rewards:hidden" id="sorter">
+        <div>
+          Sort by
+          <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer bg-white !text-emerald-600 select-none' })}>
+            <input type="radio" name="sort" value="newest-first" class="hidden invisible"/>
+            newest first
+          </label>
+          or
+          <label class={buttonVariants({ variant: 'secondary', size: 'sm', className: 'cursor-pointer bg-white select-none' })}>
+            <input type="radio" name="sort" value="oldest-first" class="hidden invisible"/>
+            oldest first
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <template id="reward-card-template">
-  <MiniCard title="" class="bg-white">
+  <MiniCard title="" class="bg-white" data-reward>
     <div class="font-semibold leading-5" data-title/>
     <div class="mt-2">
       <dl>
@@ -330,10 +344,22 @@ import { OpenSea, Sandbox } from '@/components'
         content.appendChild(el)
       })
 
-      rewardsSection.appendChild(el)
+      rewardsSection.prepend(el)
     })
 
     skeletonSection.classList.add('hidden')
     rewardsSection.classList.remove('hidden')
   })
+
+  const sorts = document.querySelectorAll<HTMLInputElement>('input[type=radio][name=sort]')
+
+  for (let sort of sorts) {
+    sort.addEventListener('change', () => {
+      const collections = Array.from(rewardsSection.querySelectorAll('[data-reward]'))
+      collections.reverse().forEach(e => rewardsSection.appendChild(e))
+      for (let s of sorts) {
+        s === sort ? s.parentElement!.classList.add('!text-emerald-600') : s.parentElement!.classList.remove('!text-emerald-600')
+      }
+    })
+  }
 </script>
