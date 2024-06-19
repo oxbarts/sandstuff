@@ -1640,9 +1640,81 @@ export const rewardNfts: RewardNft[] = [
     tsbId: 'f45f618a-2f30-4103-926c-c46bacc28144',
     tsbSlug: 'retro-edged-tci-police-car-astory',
   },
+  {
+    name: 'The Clay Way Readers',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24667342255064358953877442865570851471897873963044584906',
+    tsbId: 'ad4975cb-27f6-4a8c-86ba-7838ee97621a',
+    tsbSlug: 'the-clay-way-readers',
+  },
+  {
+    name: 'Clay Nation Legendary Electric Guitar',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24669212977160142509612743582156728314163033556699594186',
+    tsbId: '57df413c-9382-4e57-a6ad-ee31d5b46f44',
+    tsbSlug: 'clay-nation-legendary-electric-guitar',
+  },
+  {
+    name: 'Clay Nation Bass Guitar',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24668464688321829087318623295522377577256969719237590474',
+    tsbId: 'bfc1c79a-3aae-448e-9749-4132343dabd2',
+    tsbSlug: 'clay-nation-bass-guitar',
+  },
+  {
+    name: 'Herbie',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24666968110645202242730382722253676103444842044313583050',
+    tsbId: '3d9ded57-8d3f-4555-a270-be2d5084f07a',
+    tsbSlug: 'herbie',
+  },
+  {
+    name: 'Clay Nation Ukulele',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24668090543902672376171563152205202208803937800506588618',
+    tsbId: 'd4e29c3e-c89d-4cd6-bae9-bc85228630ff',
+    tsbSlug: 'clay-nation-ukulele',
+  },
+  {
+    name: 'Clay Nation Acoustic Guitar',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24667716399483515665024503008888026840350905881775586762',
+    tsbId: 'b0a1115d-0582-4992-abb2-e3ad3d7306b0',
+    tsbSlug: 'clay-nation-acoustic-guitar',
+  },
+  {
+    name: 'Clay Nation Epic Electric Guitar',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24668838832740985798465683438839552945710001637968592330',
+    tsbId: 'f9564d8b-2b43-4181-af3b-c5cff2d96319',
+    tsbSlug: 'clay-nation-epic-electric-guitar',
+  },
+  {
+    name: 'Ghost Ball (Red) - CJ ENM',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24601118692873621080847797498430811255711224347657256394',
+    tsbId: 'fd28dd5a-c5fc-4adf-98f5-480aa2825bfa',
+    tsbSlug: 'ghost-ball-(red)-cj-enm',
+  },
+  {
+    name: 'Ghost Ball (Blue) - CJ ENM',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24600744548454464369700737355113635887258192428926254538',
+    tsbId: 'c5936e3e-cf48-434b-a6d7-7be48422969c',
+    tsbSlug: 'ghost-ball-(blue)-cj-enm',
+  },
 
   /**
-   * Assets on Polygon
+   * (Maybe) Upcoming Assets on Polygon
    * Check on https://polygonscan.com/token/0xDbc52cd5b8EdA1A7BCBABb838ca927d23E3673e5?a=0x214d52880b1e4e17d020908cd8eaa988ffdd4020#inventory
    */
   // {
