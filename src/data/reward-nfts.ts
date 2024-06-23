@@ -1,3 +1,5 @@
+import { ensureUniqueValues } from '@/lib/utils.ts'
+
 export type RewardNft = {
     name: string,
     chain: 1 | 137,
@@ -1790,3 +1792,5 @@ export const rewardNfts: RewardNft[] = [
   //   tsbSlug: 'the-voice-microphone',
   // },
 ]
+
+ensureUniqueValues(rewardNfts, ['tokenId', 'tsbId'] as const, 'reward-nfts.ts')
