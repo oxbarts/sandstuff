@@ -1712,11 +1712,35 @@ export const rewardNfts: RewardNft[] = [
     tsbId: 'c5936e3e-cf48-434b-a6d7-7be48422969c',
     tsbSlug: 'ghost-ball-(blue)-cj-enm',
   },
+  {
+    name: 'Shiba Hat',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24674450999028336465671585588597183472505480418933620170',
+    tsbId: '9ed213e9-5c2f-4abf-b096-9783f20af2ad',
+    tsbSlug: 'shiba-hat',
+  },
 
   /**
    * (Maybe) Upcoming Assets on Polygon
    * Check on https://polygonscan.com/token/0xDbc52cd5b8EdA1A7BCBABb838ca927d23E3673e5?a=0x214d52880b1e4e17d020908cd8eaa988ffdd4020#inventory
    */
+  // {
+  //   name: 'Panda Hat',
+  //   chain: 137,
+  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+  //   tokenId: '24674076854609179754524525445280008104052448500202618314',
+  //   tsbId: 'ae43ca6f-0333-4dcf-9f2f-a044baa22708',
+  //   tsbSlug: 'panda-hat',
+  // },
+  // {
+  //   name: 'Bitkub Crown',
+  //   chain: 137,
+  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+  //   tokenId: '24675573432285806599112766018548709577864576175126625738',
+  //   tsbId: 'e2470355-b27d-4b1f-9379-300d524319d4',
+  //   tsbSlug: 'bitkub-crown',
+  // },
   // {
   //   name: 'Yamikawa Sports Ribbon Shoes',
   //   chain: 137,
