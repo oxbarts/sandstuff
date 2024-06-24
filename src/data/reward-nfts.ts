@@ -1728,6 +1728,14 @@ export const rewardNfts: RewardNft[] = [
    * Check on https://polygonscan.com/token/0xDbc52cd5b8EdA1A7BCBABb838ca927d23E3673e5?a=0x214d52880b1e4e17d020908cd8eaa988ffdd4020#inventory
    */
   // {
+  //   name: 'The Voice - Piano',
+  //   chain: 137,
+  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+  //   tokenId: '24675947576704963310259826161865884946317608093857627594',
+  //   tsbId: '8920c2f0-3839-41fe-a226-d9e378b10a46',
+  //   tsbSlug: 'the-voice-piano',
+  // },
+  // {
   //   name: 'Panda Hat',
   //   chain: 137,
   //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
