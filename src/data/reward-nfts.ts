@@ -1722,19 +1722,35 @@ export const rewardNfts: RewardNft[] = [
     tsbId: '9ed213e9-5c2f-4abf-b096-9783f20af2ad',
     tsbSlug: 'shiba-hat',
   },
+  {
+    name: 'The Voice - Microphone',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24675199287866649887965705875231534209411544256395623882',
+    tsbId: '59eb5310-8776-4b6f-8462-8fd98a39f09f',
+    tsbSlug: 'the-voice-microphone',
+  },
+  {
+    name: 'The Voice - Piano',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24675947576704963310259826161865884946317608093857627594',
+    tsbId: '8920c2f0-3839-41fe-a226-d9e378b10a46',
+    tsbSlug: 'the-voice-piano',
+  },
+  {
+    name: 'Yamikawa Sports Ribbon Shoes',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24671831988094239487642164585376955893334256987816607178',
+    tsbId: '1d518089-9131-46c5-b2bb-131dc5766e1c',
+    tsbSlug: 'yamikawa-sports-ribbon-shoes',
+  },
 
   /**
    * (Maybe) Upcoming Assets on Polygon
    * Check on https://polygonscan.com/token/0xDbc52cd5b8EdA1A7BCBABb838ca927d23E3673e5?a=0x214d52880b1e4e17d020908cd8eaa988ffdd4020#inventory
    */
-  // {
-  //   name: 'The Voice - Piano',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24675947576704963310259826161865884946317608093857627594',
-  //   tsbId: '8920c2f0-3839-41fe-a226-d9e378b10a46',
-  //   tsbSlug: 'the-voice-piano',
-  // },
   // {
   //   name: 'Panda Hat',
   //   chain: 137,
@@ -1750,14 +1766,6 @@ export const rewardNfts: RewardNft[] = [
   //   tokenId: '24675573432285806599112766018548709577864576175126625738',
   //   tsbId: 'e2470355-b27d-4b1f-9379-300d524319d4',
   //   tsbSlug: 'bitkub-crown',
-  // },
-  // {
-  //   name: 'Yamikawa Sports Ribbon Shoes',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24671831988094239487642164585376955893334256987816607178',
-  //   tsbId: '1d518089-9131-46c5-b2bb-131dc5766e1c',
-  //   tsbSlug: 'yamikawa-sports-ribbon-shoes',
   // },
   // {
   //   name: 'The Lightbringers Armband',
@@ -1790,14 +1798,6 @@ export const rewardNfts: RewardNft[] = [
   //   tokenId: '24674825143447493176818645731914358840958512337664622026',
   //   tsbId: 'aa20dfe3-8272-4c2b-bb78-248550b841bf',
   //   tsbSlug: 'the-voice-power-mic',
-  // },
-  // {
-  //   name: 'The Voice - Microphone',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24675199287866649887965705875231534209411544256395623882',
-  //   tsbId: '59eb5310-8776-4b6f-8462-8fd98a39f09f',
-  //   tsbSlug: 'the-voice-microphone',
   // },
 ]
 
