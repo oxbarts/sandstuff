@@ -8,6 +8,13 @@ export type OfficialAvatarCollection = {
 
 export const collections: OfficialAvatarCollection[] = [
   {
+    name: "Rabbids Rockstars Avatar Collection",
+    chain: 137,
+    address: "0x8ec369b054e0b732676bdaf872bbdcfa02b9c6d4",
+    tsbUrl: "https://www.sandbox.game/avatar-collections/rabbids-rockstars/en/",
+    osUrl: "https://opensea.io/collection/rabbids-rockstar"
+  },
+  {
     name: "Hanjin Hamsterz Doodles",
     chain: 137,
     address: "0x4c10b3c69ab5f2991ada1a65d9cc93dfe1ae9ac6",
