@@ -1752,6 +1752,46 @@ export const rewardNfts: RewardNft[] = [
    * Check on https://polygonscan.com/token/0xDbc52cd5b8EdA1A7BCBABb838ca927d23E3673e5?a=0x214d52880b1e4e17d020908cd8eaa988ffdd4020#inventory
    */
   // {
+  //   name: 'Holding Sign - ChampMYZ',
+  //   chain: 137,
+  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+  //   tokenId: '24676321721124120021406886305183060314770640012588629450',
+  //   tsbId: '947492ec-ab0d-4517-af31-a5d99e3464af',
+  //   tsbSlug: 'holding-sign-champmyz',
+  // },
+  // {
+  //   name: 'Rabbids NFT Dragon',
+  //   chain: 137,
+  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+  //   tokenId: '24677070009962433443701006591817411051676703850050633162',
+  //   tsbId: 'db59f8ca-ca23-4ead-b220-26e51289264b',
+  //   tsbSlug: 'rabbids-nft-dragon',
+  // },
+  // {
+  //   name: 'Rabbids NFT Rocket',
+  //   chain: 137,
+  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+  //   tokenId: '24676695865543276732553946448500235683223671931319631306',
+  //   tsbId: '1a28382b-f7c8-4531-91c5-034ec98d93e2',
+  //   tsbSlug: 'rabbids-nft-rocket',
+  // },
+  // {
+  //   name: 'Captain Laserhawk NFT Screen',
+  //   chain: 137,
+  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+  //   tokenId: '24677444154381590154848066735134586420129735768781635018',
+  //   tsbId: 'e703b0aa-712e-459a-a29b-b949ce7a8a99',
+  //   tsbSlug: 'captain-laserhawk-nft-screen',
+  // },
+  // {
+  //   name: 'Rabbids NFT Totem',
+  //   chain: 137,
+  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+  //   tokenId: '24677818298800746865995126878451761788582767687512636874',
+  //   tsbId: '4033d220-eb42-4caa-a7dd-9a2c20e8f621',
+  //   tsbSlug: 'rabbids-nft-totem',
+  // },
+  // {
   //   name: 'Panda Hat',
   //   chain: 137,
   //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
