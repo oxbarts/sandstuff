@@ -1779,14 +1779,6 @@ export const rewardNfts: RewardNft[] = [
     tsbSlug: 'the-sandbox-fencing-helmet',
   },
   {
-    name: 'The Sandbox Fencing Helmet',
-    chain: 137,
-    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-    tokenId: '24683430465088097533201029028209392315378246468477664714',
-    tsbId: '19bd9f2f-fe5e-4375-8fd8-f2ec502d6b62',
-    tsbSlug: 'the-sandbox-fencing-helmet',
-  },
-  {
     name: 'The Sandbox Fencing Chest',
     chain: 137,
     contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
