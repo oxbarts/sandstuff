@@ -1890,6 +1890,22 @@ export const rewardNfts: RewardNft[] = [
     tsbId: '4033d220-eb42-4caa-a7dd-9a2c20e8f621',
     tsbSlug: 'rabbids-nft-totem',
   },
+  {
+    name: 'Panda Hat',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24674076854609179754524525445280008104052448500202618314',
+    tsbId: 'ae43ca6f-0333-4dcf-9f2f-a044baa22708',
+    tsbSlug: 'panda-hat',
+  },
+  {
+    name: 'Kenshiro Muscle Jacket',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24683804609507254244348089171526567683831278387208666570',
+    tsbId: 'df0618a2-0503-4a40-80ef-0b1f02d5372d',
+    tsbSlug: 'kenshiro-muscle-jacket',
+  },
 
   /**
    * (Maybe) Upcoming Assets on Polygon
@@ -1910,14 +1926,6 @@ export const rewardNfts: RewardNft[] = [
   //   tokenId: '24677070009962433443701006591817411051676703850050633162',
   //   tsbId: 'db59f8ca-ca23-4ead-b220-26e51289264b',
   //   tsbSlug: 'rabbids-nft-dragon',
-  // },
-  // {
-  //   name: 'Panda Hat',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24674076854609179754524525445280008104052448500202618314',
-  //   tsbId: 'ae43ca6f-0333-4dcf-9f2f-a044baa22708',
-  //   tsbSlug: 'panda-hat',
   // },
   // {
   //   name: 'Bitkub Crown',
