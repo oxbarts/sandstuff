@@ -1906,6 +1906,30 @@ export const rewardNfts: RewardNft[] = [
     tsbId: 'df0618a2-0503-4a40-80ef-0b1f02d5372d',
     tsbSlug: 'kenshiro-muscle-jacket',
   },
+  {
+    name: 'Galaxy Habbos - Habbo Vintage Sofa',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24684927042764724377789269601478093789190374143401672138',
+    tsbId: '35a7a1b2-ce5c-4826-968d-ee9729746e50',
+    tsbSlug: 'galaxy-habbos-habbo-vintage-sofa',
+  },
+  {
+    name: 'Galaxy Habbos - Space Sneakers',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24686049476022194511230450031429619894549469899594677706',
+    tsbId: '6fb1637e-4dbc-4212-84b9-8be0dba608f6',
+    tsbSlug: 'galaxy-habbos-space-sneakers',
+  },
+  {
+    name: 'Rabbids NFT Dragon',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24687546053698821355818690604698321368361597574518685130',
+    tsbId: 'cf02c36e-8ced-48cb-baa7-34865d5d6d28',
+    tsbSlug: 'rabbids-nft-dragon',
+  },
 
   /**
    * (Maybe) Upcoming Assets on Polygon
@@ -1918,14 +1942,6 @@ export const rewardNfts: RewardNft[] = [
   //   tokenId: '24676321721124120021406886305183060314770640012588629450',
   //   tsbId: '947492ec-ab0d-4517-af31-a5d99e3464af',
   //   tsbSlug: 'holding-sign-champmyz',
-  // },
-  // {
-  //   name: 'Rabbids NFT Dragon',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24677070009962433443701006591817411051676703850050633162',
-  //   tsbId: 'db59f8ca-ca23-4ead-b220-26e51289264b',
-  //   tsbSlug: 'rabbids-nft-dragon',
   // },
   // {
   //   name: 'Bitkub Crown',
