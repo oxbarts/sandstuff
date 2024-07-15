@@ -8,6 +8,13 @@ export type OfficialAvatarCollection = {
 
 export const collections: OfficialAvatarCollection[] = [
   {
+    name: "Solo Leveling: Unlimited Avatar Collection",
+    chain: 137,
+    address: "0x44f57b0d879114724f8ce203248d3d95209f1923",
+    tsbUrl: "https://www.sandbox.game/avatar-collections/solo-leveling/en/",
+    osUrl: "https://opensea.io/collection/avatarssololeveling"
+  },
+  {
     name: "Rabbids Rockstars Avatar Collection",
     chain: 137,
     address: "0x8ec369b054e0b732676bdaf872bbdcfa02b9c6d4",
