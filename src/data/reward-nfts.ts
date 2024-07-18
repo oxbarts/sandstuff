@@ -1930,6 +1930,22 @@ export const rewardNfts: RewardNft[] = [
     tsbId: 'cf02c36e-8ced-48cb-baa7-34865d5d6d28',
     tsbSlug: 'rabbids-nft-dragon',
   },
+  {
+    name: 'Galaxy Habbos - Frank',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24684178753926410955495149314843743052284310305939668426',
+    tsbId: '4ec55191-9ff3-4e66-9d6a-e497d8c8f12d',
+    tsbSlug: 'galaxy-habbos-frank',
+  },
+  {
+    name: 'Galaxy Habbos - Slimy Companion',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24685675331603037800083389888112444526096437980863675850',
+    tsbId: '3d053f58-c8c5-4099-8799-7b7df4b85ef0',
+    tsbSlug: 'galaxy-habbos-slimy-companion',
+  },
 
   /**
    * (Maybe) Upcoming Assets on Polygon
