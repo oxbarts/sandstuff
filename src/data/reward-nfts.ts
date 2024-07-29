@@ -1946,6 +1946,38 @@ export const rewardNfts: RewardNft[] = [
     tsbId: '3d053f58-c8c5-4099-8799-7b7df4b85ef0',
     tsbSlug: 'galaxy-habbos-slimy-companion',
   },
+  {
+    name: 'Origin Draconic Shield',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24696525519758582423348134044310530211234363624062729674',
+    tsbId: 'e4b045cc-8945-480b-b307-42293bd39fda',
+    tsbSlug: 'origin-draconic-shield',
+  },
+  {
+    name: 'Origin Draconic Fangblade',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24696151375339425712201073900993354842781331705331727818',
+    tsbId: '7189397d-2b68-4223-913b-71154a3cf0ae',
+    tsbSlug: 'origin-draconic-fangblade',
+  },
+  {
+    name: 'Galaxy Habbos - Space Gauntlets',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24685301187183881088936329744795269157643406062132673994',
+    tsbId: 'c881328c-30ad-40c5-996b-b3f518154f33',
+    tsbSlug: 'galaxy-habbos-space-gauntlets',
+  },
+  {
+    name: 'Galaxy Habbos - Sky Dragon Lamp',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24684552898345567666642209458160918420737342224670670282',
+    tsbId: '47758948-b855-46be-8266-7b903a3508a5',
+    tsbSlug: 'galaxy-habbos-sky-dragon-lamp',
+  },
 
   /**
    * (Maybe) Upcoming Assets on Polygon
