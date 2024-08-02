@@ -1978,6 +1978,22 @@ export const rewardNfts: RewardNft[] = [
     tsbId: '47758948-b855-46be-8266-7b903a3508a5',
     tsbSlug: 'galaxy-habbos-sky-dragon-lamp',
   },
+  {
+    name: 'Rubber Duck Buoy',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24696899664177739134495194187627705579687395542793731530',
+    tsbId: '2447c78d-550f-4c50-911e-e62b1dd0a07d',
+    tsbSlug: 'rubber-duck-buoy',
+  },
+  {
+    name: 'Yamikawa Sports Ribbon Umbrella',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24692409931147858600730472467821601158251012518021709258',
+    tsbId: '7be4d36e-bc57-4e4d-b1af-58b6823c23b9',
+    tsbSlug: 'yamikawa-sports-ribbon-umbrella',
+  },
 
   /**
    * (Maybe) Upcoming Assets on Polygon
