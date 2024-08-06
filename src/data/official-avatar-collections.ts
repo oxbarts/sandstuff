@@ -8,6 +8,13 @@ export type OfficialAvatarCollection = {
 
 export const collections: OfficialAvatarCollection[] = [
   {
+    name: "Jab We Met",
+    chain: 137,
+    address: "0x0649a55263a165f34ecbcd8a8868a776a43a012a",
+    tsbUrl: "https://www.sandbox.game/avatar-collections/jab-we-met/en/",
+    osUrl: "https://opensea.io/collection/???"
+  },
+  {
     name: "Solo Leveling: Unlimited Avatar Collection",
     chain: 137,
     address: "0x44f57b0d879114724f8ce203248d3d95209f1923",
