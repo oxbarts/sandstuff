@@ -12,7 +12,42 @@ export const collections: OfficialAvatarCollection[] = [
     chain: 137,
     address: '0x0649a55263a165f34ecbcd8a8868a776a43a012a',
     tsbUrl: 'https://www.sandbox.game/avatar-collections/jab-we-met/en/',
-    osUrl: 'https://opensea.io/collection/???'
+    osUrl: 'https://opensea.io/collection/jabwemet'
+  },
+  {
+    name: 'BONK Avatar - Rise of the Memecoins',
+    chain: 137,
+    address: '0xCea924A8b61c36dbeC3809fdBF28087d06C5d193',
+    tsbUrl: '',
+    osUrl: 'https://opensea.io/collection/kotmbonk'
+  },
+  {
+    name: 'SHIB Avatar - Rise of the Memecoins',
+    chain: 137,
+    address: '0xA0168f6F3aB48e4FDb7AEC4a13812a11c04d5054',
+    tsbUrl: '',
+    osUrl: 'https://opensea.io/collection/kotmshiba'
+  },
+  {
+    name: 'DOGE Avatar - Rise of the Memecoins',
+    chain: 137,
+    address: '0xB236b2727EBa7A849c16D50Fad66E6c8f73f5d38',
+    tsbUrl: '',
+    osUrl: 'https://opensea.io/collection/kotmdoge'
+  },
+  {
+    name: 'PEPE Avatar - Rise of the Memecoins',
+    chain: 137,
+    address: '0x2b8f0f70e43200503b80c82efbe0cd5f22b462de',
+    tsbUrl: '',
+    osUrl: 'https://opensea.io/collection/kotmpepe'
+  },
+  {
+    name: 'DEGEN Avatar - Rise of the Memecoins',
+    chain: 137,
+    address: '0x614a3e057a040c8efe6b2395646da5fcf6df6d54',
+    tsbUrl: '',
+    osUrl: 'https://opensea.io/collection/kotmdegen'
   },
   {
     name: 'Solo Leveling: Unlimited Avatar Collection',
