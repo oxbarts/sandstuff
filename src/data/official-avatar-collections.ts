@@ -2,8 +2,9 @@ export type OfficialAvatarCollection = {
   name: string,
   chain: 1 | 137,
   address: string,
-  tsbUrl: string,
-  osUrl: string
+  tsbUrl?: string,
+  mediumUrl?: string,
+  osUrl: string,
 }
 
 export const collections: OfficialAvatarCollection[] = [
@@ -18,35 +19,35 @@ export const collections: OfficialAvatarCollection[] = [
     name: 'BONK Avatar - Rise of the Memecoins',
     chain: 137,
     address: '0xCea924A8b61c36dbeC3809fdBF28087d06C5d193',
-    tsbUrl: '',
+    mediumUrl: 'https://sandboxgame.medium.com/rise-of-the-memecoins-3349876fc979',
     osUrl: 'https://opensea.io/collection/kotmbonk'
   },
   {
     name: 'SHIB Avatar - Rise of the Memecoins',
     chain: 137,
     address: '0xA0168f6F3aB48e4FDb7AEC4a13812a11c04d5054',
-    tsbUrl: '',
+    mediumUrl: 'https://sandboxgame.medium.com/rise-of-the-memecoins-3349876fc979',
     osUrl: 'https://opensea.io/collection/kotmshiba'
   },
   {
     name: 'DOGE Avatar - Rise of the Memecoins',
     chain: 137,
     address: '0xB236b2727EBa7A849c16D50Fad66E6c8f73f5d38',
-    tsbUrl: '',
+    mediumUrl: 'https://sandboxgame.medium.com/rise-of-the-memecoins-3349876fc979',
     osUrl: 'https://opensea.io/collection/kotmdoge'
   },
   {
     name: 'PEPE Avatar - Rise of the Memecoins',
     chain: 137,
     address: '0x2b8f0f70e43200503b80c82efbe0cd5f22b462de',
-    tsbUrl: '',
+    mediumUrl: 'https://sandboxgame.medium.com/rise-of-the-memecoins-3349876fc979',
     osUrl: 'https://opensea.io/collection/kotmpepe'
   },
   {
     name: 'DEGEN Avatar - Rise of the Memecoins',
     chain: 137,
     address: '0x614a3e057a040c8efe6b2395646da5fcf6df6d54',
-    tsbUrl: '',
+    mediumUrl: 'https://sandboxgame.medium.com/rise-of-the-memecoins-3349876fc979',
     osUrl: 'https://opensea.io/collection/kotmdegen'
   },
   {
@@ -123,7 +124,6 @@ export const collections: OfficialAvatarCollection[] = [
     name: 'Gucci Cosmos Land',
     chain: 137,
     address: '0xd56ceb568e6193476d07933ada89af6b656b2a7c',
-    tsbUrl: '',
     osUrl: 'https://opensea.io/collection/gucci-cosmos-land-avatars'
   },
   {

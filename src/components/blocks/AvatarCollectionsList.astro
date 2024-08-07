@@ -1,5 +1,5 @@
 ---
-import { Ethereum, Polygon, OpenSea, Sandbox, MiniCard as Card } from '@/components'
+import { Ethereum, Polygon, OpenSea, Sandbox, Medium, MiniCard as Card } from '@/components'
 import { buttonVariants } from '../ui/button.tsx'
 import { collections } from '@/data/official-avatar-collections.ts'
 ---
@@ -31,10 +31,18 @@ import { collections } from '@/data/official-avatar-collections.ts'
         </dl>
 
         <div class="mt-5 flex items-center gap-6 text-[var(--tw-prose-links)] text-sm">
-          <a href={collection.tsbUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
-            <Sandbox class="size-4"/>
-            <span class="hidden sm:inline">The&nbsp;Sandbox</span>
-          </a>
+          {collection.tsbUrl && (
+            <a href={collection.tsbUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+              <Sandbox class="size-4"/>
+              <span class="hidden sm:inline">The&nbsp;Sandbox</span>
+            </a>
+          )}
+          {collection.mediumUrl && (
+            <a href={collection.mediumUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
+              <Medium class="size-4"/>
+              <span class="hidden sm:inline">Medium</span>
+            </a>
+          )}
           <a href={collection.osUrl} class="inline-flex items-center justify-center gap-1 py-2 sm:py-0">
             <OpenSea class="size-4"/>
             <span class="hidden sm:inline">OpenSea</span>
