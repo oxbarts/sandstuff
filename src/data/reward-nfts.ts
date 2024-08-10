@@ -1994,6 +1994,30 @@ export const rewardNfts: RewardNft[] = [
     tsbId: '7be4d36e-bc57-4e4d-b1af-58b6823c23b9',
     tsbSlug: 'yamikawa-sports-ribbon-umbrella',
   },
+  {
+    name: 'Hidebu Death Mask',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24693159681487809353927510958140784611440096011416255946',
+    tsbId: '975acca4-4393-4780-8c0e-39bba81d68cf',
+    tsbSlug: 'hidebu-death-mask',
+  },
+  {
+    name: 'Scout Goggles',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24693533825906966065074571101457959979893127930147257802',
+    tsbId: 'cb87fbbf-27eb-4a96-b7aa-ad78ad878982',
+    tsbSlug: 'scout-goggles',
+  },
+  {
+    name: 'Blue Metal Shoulders',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24692785537068652642780450814823609242987064092685254090',
+    tsbId: 'dfcf1abc-2831-4f2b-b2c6-89b5f8da5145',
+    tsbSlug: 'blue-metal-shoulders',
+  },
 
   /**
    * (Maybe) Upcoming Assets on Polygon
