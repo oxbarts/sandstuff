@@ -9,6 +9,13 @@ export type OfficialAvatarCollection = {
 
 export const collections: OfficialAvatarCollection[] = [
   {
+    name: 'Netmarble Seven Knights & StoneAge Avatar Collection',
+    chain: 137,
+    address: '0x2C7eDbF8FB8baFfD35caEd5c7dA5220eA72A7b4B',
+    tsbUrl: 'https://www.sandbox.game/avatar-collections/netmarble/en/',
+    osUrl: 'https://opensea.io/collection/netmarble-avatars'
+  },
+  {
     name: 'Jab We Met',
     chain: 137,
     address: '0x0649a55263a165f34ecbcd8a8868a776a43a012a',
