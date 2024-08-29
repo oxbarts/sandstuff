@@ -2018,6 +2018,14 @@ export const rewardNfts: RewardNft[] = [
     tsbId: 'dfcf1abc-2831-4f2b-b2c6-89b5f8da5145',
     tsbSlug: 'blue-metal-shoulders',
   },
+  {
+    name: 'Burning Victory Staff',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24704008408141716646289336910654037580295001998682766794',
+    tsbId: 'ba33940d-16fb-405d-85e5-a447867ac54f',
+    tsbSlug: 'burning-victory-staff',
+  },
 
   /**
    * (Maybe) Upcoming Assets on Polygon
