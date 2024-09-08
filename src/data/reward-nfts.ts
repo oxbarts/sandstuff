@@ -2026,59 +2026,38 @@ export const rewardNfts: RewardNft[] = [
     tsbId: 'ba33940d-16fb-405d-85e5-a447867ac54f',
     tsbSlug: 'burning-victory-staff',
   },
-
-  /**
-   * (Maybe) Upcoming Assets on Polygon
-   * Check on https://polygonscan.com/token/0xDbc52cd5b8EdA1A7BCBABb838ca927d23E3673e5?a=0x214d52880b1e4e17d020908cd8eaa988ffdd4020#inventory
-   */
-  // {
-  //   name: 'Holding Sign - ChampMYZ',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24676321721124120021406886305183060314770640012588629450',
-  //   tsbId: '947492ec-ab0d-4517-af31-a5d99e3464af',
-  //   tsbSlug: 'holding-sign-champmyz',
-  // },
-  // {
-  //   name: 'Bitkub Crown',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24675573432285806599112766018548709577864576175126625738',
-  //   tsbId: 'e2470355-b27d-4b1f-9379-300d524319d4',
-  //   tsbSlug: 'bitkub-crown',
-  // },
-  // {
-  //   name: 'The Lightbringers Armband',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24673702710190023043377465301962832735599416581471616458',
-  //   tsbId: '2c5121dd-986a-415a-b218-867810786ec5',
-  //   tsbSlug: 'the-lightbringers-armband',
-  // },
-  // {
-  //   name: 'The Lightbringers Rod',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24672954421351709621083345015328481998693352744009612746',
-  //   tsbId: '924fa717-26b8-4674-8fd2-6a0c293366d8',
-  //   tsbSlug: 'the-lightbringers-rod',
-  // },
-  // {
-  //   name: 'The Lightbringers Backpack',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24673328565770866332230405158645657367146384662740614602',
-  //   tsbId: 'a1e2d5c3-a8c9-471c-96f7-ee3c6170705b',
-  //   tsbSlug: 'the-lightbringers-backpack',
-  // },
-  // {
-  //   name: 'The Voice - Power Mic',
-  //   chain: 137,
-  //   contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
-  //   tokenId: '24674825143447493176818645731914358840958512337664622026',
-  //   tsbId: 'aa20dfe3-8272-4c2b-bb78-248550b841bf',
-  //   tsbSlug: 'the-voice-power-mic',
-  // },
+  {
+    name: 'Heroic Empowered Leggings',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24710743007686537446936419490363194212449576535840800202',
+    tsbId: '6054245f-b52e-43d7-96d4-03bda2bb527d',
+    tsbSlug: 'heroic-empowered-leggings',
+  },
+  {
+    name: 'Heroic Chestplate with Cape',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24711491296524850869230539776997544949355640373302803914',
+    tsbId: 'e0131454-9850-4a77-a5e0-aae32b75c3b0',
+    tsbSlug: 'heroic-chestplate-with-cape',
+  },
+  {
+    name: 'Heroic Valiant Sleeves',
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24711117152105694158083479633680369580902608454571802058',
+    tsbId: '7cc06b67-d465-46ce-89c5-61337017af5e',
+    tsbSlug: 'heroic-valiant-sleeves',
+  },
+  {
+    name: `The Hero’s Crown`,
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24711865440944007580377599920314720317808672292033805770',
+    tsbId: 'c0b7996f-3c76-4ee2-ad1c-f1318298bddf',
+    tsbSlug: 'the-hero-s-crown',
+  },
 ]
 
 ensureUniqueValues(rewardNfts, ['tokenId', 'tsbId'] as const, 'reward-nfts.ts')
