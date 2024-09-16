@@ -2114,6 +2114,14 @@ export const rewardNfts: RewardNft[] = [
     tsbId: '99fdaace-3c10-4b0a-bf02-914561883e0d',
     tsbSlug: 'post-voxel-art',
   },
+  {
+    name: `Pillars of Creativity`,
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24701389397207619668259915907433810001123778567565753802',
+    tsbId: '71d3072b-c60f-4c0b-8703-0b4a609e0146',
+    tsbSlug: 'pillars-of-creativity',
+  },
 ]
 
 ensureUniqueValues(rewardNfts, ['tokenId', 'tsbId'] as const, 'reward-nfts.ts')
