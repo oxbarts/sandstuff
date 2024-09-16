@@ -9,6 +9,13 @@ export type OfficialAvatarCollection = {
 
 export const collections: OfficialAvatarCollection[] = [
   {
+    name: 'Shibuya109 3Yk Fashion',
+    chain: 137,
+    address: '0x28d7160C669da4C871a885f5cb4f47ceb63fE7ff',
+    tsbUrl: 'https://www.sandbox.game/avatar-collections/shibuya-y3k-fashion/en/',
+    osUrl: 'https://opensea.io/collection/shibuyay3kfashion',
+  },
+  {
     name: 'Netmarble Seven Knights & StoneAge Avatar Collection',
     chain: 137,
     address: '0x2C7eDbF8FB8baFfD35caEd5c7dA5220eA72A7b4B',
