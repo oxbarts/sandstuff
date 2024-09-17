@@ -2122,6 +2122,30 @@ export const rewardNfts: RewardNft[] = [
     tsbId: '71d3072b-c60f-4c0b-8703-0b4a609e0146',
     tsbSlug: 'pillars-of-creativity',
   },
+  {
+    name: `The Fox - The Little Prince`,
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24715606885135574691848201353486474002338991479343824330',
+    tsbId: '464844c7-91cf-472d-aa3f-51b7491e0116',
+    tsbSlug: 'the-fox-the-little-prince',
+  },
+  {
+    name: `The Little Prince's Planet - The Little Prince`,
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24715981029554731402995261496803649370792023398074826186',
+    tsbId: 'f8d1008c-d156-4b73-a94b-c6029c9cd216',
+    tsbSlug: `the-little-prince's-planet-the-little-prince`,
+  },
+  {
+    name: `The Birds - The Little Prince`,
+    chain: 137,
+    contractAddress: '0xdbc52cd5b8eda1a7bcbabb838ca927d23e3673e5',
+    tokenId: '24716355173973888114142321640120824739245055316805828042',
+    tsbId: 'f013e114-b7b6-4d5e-b08e-6e63d5d7e203',
+    tsbSlug: 'the-birds-the-little-prince',
+  },
 ]
 
 ensureUniqueValues(rewardNfts, ['tokenId', 'tsbId'] as const, 'reward-nfts.ts')
