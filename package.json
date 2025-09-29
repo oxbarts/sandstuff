@@ -3,12 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "bunx --bun astro dev",
     "lint": "bunx --bun eslint .",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "build": "bunx --bun astro build",
+    "preview": "bunx --bun astro preview",
+    "astro": "bunx --bun astro"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.36.0",
