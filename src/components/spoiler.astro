@@ -1,0 +1,29 @@
+---
+interface Props {
+  class?: string
+  block?: boolean
+}
+
+const { class: classes = '', block = true } = Astro.props
+
+---
+
+<button class="**:invisible rounded-md bg-accent-100 cursor-pointer" title="Click to reveal content" data-spoiler class:list={[classes, block && 'block w-full']} tabindex="0">
+  <slot/>
+</button>
+
+<script>
+    const addEventListeners = () => {
+      document?.querySelector('[data-spoiler]')?.addEventListener('click', (event: Event) => {
+        const target = event.currentTarget as HTMLButtonElement
+        const fragment = document.createDocumentFragment()
+        while (target.firstChild) {
+          fragment.appendChild(target.firstChild)
+        }
+        target.parentNode?.replaceChild(fragment, target)
+      }, true)
+    }
+
+    document?.addEventListener('astro:after-swap', addEventListeners)
+    addEventListeners()
+</script>

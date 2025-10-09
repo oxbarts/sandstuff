@@ -1,0 +1,28 @@
+---
+import { Tabs, TabItem, Code } from '@astrojs/starlight/components'
+import { minify_sync } from 'terser'
+
+interface Props {
+  code: string
+  lang?: string
+}
+
+const { code, lang = 'js' } = Astro.props
+
+const minifiedCode = minify_sync(code, {
+  module: true,
+  format: { quote_style: 3, comments: false },
+}).code
+if (!minifiedCode) {
+  throw new Error('Code counld not be minified on `<MinifiedCode>` component.')
+}
+---
+
+<Tabs>
+  <TabItem label="Minified">
+    <Code code={minifiedCode} lang={lang}/>
+  </TabItem>
+  <TabItem label="Readable">
+    <Code code={code} lang={lang}/>
+  </TabItem>
+</Tabs>

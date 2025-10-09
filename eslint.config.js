@@ -42,5 +42,11 @@ export default defineConfig(
       '@stylistic/ts/indent': 'off',
       '@stylistic/jsx-one-expression-per-line': 'off',
     },
+  },
+  {
+    files: ['src/**/*-snippet.*'],
+    rules: {
+      'no-undef': ['off'],
+    },
   }
 )

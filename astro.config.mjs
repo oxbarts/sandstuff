@@ -2,25 +2,41 @@
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 
+import tailwindcss from '@tailwindcss/vite'
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'My Docs',
-      social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+      title: 'oxbarts/Sandstuff',
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' },
+        { icon: 'x.com', label: 'X', href: 'https://x.com/oxbarts' },
+        { icon: 'youtube', label: 'YouTube', href: 'https://youtube.com/@oxbarts' },
+      ],
       sidebar: [
+        { label: 'Welcome', link: '/' },
         {
-          label: 'Guides',
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: 'Example Guide', slug: 'guides/example' },
-          ],
+          label: 'Alpha Season 6',
+          badge: { text: 'Hot', variant: 'tip' },
+          autogenerate: { directory: 'as6' },
         },
         {
-          label: 'Reference',
-          autogenerate: { directory: 'reference' },
+          label: 'General Stuff',
+          autogenerate: { directory: 'general-stuff' },
         },
       ],
+      customCss: [
+        './src/styles.css',
+      ],
+      components: {
+        SiteTitle: './src/overrides/site-title.astro',
+        ThemeSelect: './src/overrides/theme-select.astro',
+      },
     }),
   ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 })

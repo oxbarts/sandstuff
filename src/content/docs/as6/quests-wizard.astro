@@ -1,0 +1,104 @@
+---
+import { Steps, Icon } from '@astrojs/starlight/components'
+---
+
+<Steps class:list={{ 'mt-6': true }}>
+  <ol>
+    <li>
+      <p><strong>Get the data</strong></p>
+      <p>Clicking the button opens a new tab with a lot of gibberish (aka JSON). Copy all of it and paste it in step 2.</p>
+      <p><a class="no-underline btn" href="https://api.sandbox.game/experiences/social-event/515/user-data?filter=all" target="_blank" rel="noopener noreferrer">Open Data <Icon name="external"/></a></p>
+    </li>
+    <li>
+      <p><strong>Analyze data</strong></p>
+      <p>Paste the data from step 1 into the following field and hit analyze.</p>
+      <form id="duq-form" novalidate>
+        <div>
+          <textarea class="w-full resize-y textarea" name="data" required></textarea>
+          <p class="empty:hidden text-rose-600" data-error-message></p>
+        </div>
+        <button class="btn btn-primary">Analyze </button>
+      </form>
+    </li>
+    <li>
+      <p><strong>Result</strong></p>
+      <div id="duq-output">
+        <div class="flex justify-center p-4 border-2 border-zinc-200 border-dashed rounded-lg font-semibold text-zinc-500 text-sm text-center text-balance">
+          <i>Quest will appear after hitting the Analyze button</i>
+        </div>
+      </div>
+    </li>
+  </ol>
+</Steps>
+
+<template id="duq-experience-template">
+  <details class="pl-0 border-l-0">
+    <summary class="mb-0"></summary>
+    <ul class="mt-0 pl-5 list-none"></ul>
+  </details>
+</template>
+<template id="duq-quest-template">
+  <li class="mt-0"></li>
+</template>
+
+<script>
+import { cloneTemplate } from '~/lib/utils.ts'
+
+const form = document.querySelector('#duq-form') as HTMLFormElement
+const output = document.querySelector('#duq-output') as HTMLDivElement
+const experienceTemplate = document.getElementById('duq-experience-template') as HTMLTemplateElement
+const questTemplate = document.getElementById('duq-quest-template') as HTMLTemplateElement
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+
+  const dataField = form.data as HTMLTextAreaElement
+
+  if (!dataField.validity.valid) {
+    dataField.parentElement!.querySelector('[data-error-message]')!.textContent = 'Can\'t do much without data.'
+    return false
+  }
+
+  let data
+  try {
+    data = JSON.parse((form.data as HTMLTextAreaElement).value)
+  } catch (_) {
+    dataField.parentElement!.querySelector('[data-error-message]')!.textContent = 'This doesn\'t look right. Are you sure you\'ve copied everything?'
+    return false
+  }
+
+  const frag = document.createDocumentFragment()
+  data.all.rows.filter((r: Row) => r.questData.totalQuests > 0 && r.questData.visited === true)
+    .forEach((r: Row, i: number) => {
+      const details = cloneTemplate<HTMLDetailsElement>(experienceTemplate)
+      console.log(details)
+      if (i > 0) {
+        details.classList.add('mt-1')
+      }
+      const summary = details.querySelector('summary')!
+      summary.textContent = `${r.name} (${r.questData.userEp}/${r.questData.totalEp} EP)`
+      const list = details.querySelector('ul')!
+      r.questData.questsCompletionTimes.forEach(q => {
+        const li = cloneTemplate<HTMLLIElement>(questTemplate)
+        li.textContent = `${'completionTime' in q ? '✅' : '❌'} ${q.name}`
+        list.append(li)
+      })
+      frag.append(details)
+    })
+  output.replaceChildren(frag)
+})
+
+type Row = {
+  name: string
+  questData: {
+    userEp: number
+    totalEp: number
+    totalQuests: number
+    visited: boolean
+    questsCompletionTimes: {
+      name: string
+      completionTime: number
+    }[]
+  }
+}
+</script>

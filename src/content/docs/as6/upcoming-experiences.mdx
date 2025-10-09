@@ -1,0 +1,66 @@
+---
+title: "Upcoming experiences"
+# tableOfContents: false
+sidebar:
+  order: 1
+---
+
+import Wizard from './upcoming-experiences-wizard.astro'
+import Code from '~/components/minified-code.astro'
+import snippet from './upcoming-experiences-snippet?raw'
+import { data } from './upcoming-experiences-data.ts'
+
+Get a list of upcoming experiences.
+
+You can find an older version of [the list](#the-list) further down the page, but you should use the wizard or one of the alternative methods for the latest version.
+
+
+## Wizard
+
+<Wizard/>
+
+
+## Alternatives
+
+You don't have to use the form above. There are other ways to get that information.
+
+
+### Console snippet
+
+Open your browser's console with F12 and paste the following code. Only works when you're on the Sandbox website and logged in. **Please make sure to understand what you do. Pasting and executing unknown code can be dangerous.**
+
+<Code code={snippet}/>
+
+
+### Network tab
+
+While visiting the AS6 dashboard on the Sandbox website at <a href="https://www.sandbox.game/en/events/alpha-season-6/" target="_blank" rel="noopener noreferrer">https://www.sandbox.game/en/events/alpha-season-6/</a>, have a look at your browser dev tool's network tab and search for an entry called *515*.
+
+
+### Raw JSON
+
+Open <a href="https://api.sandbox.game/experiences/social-event/515" target="_blank" rel="noopener noreferrer">https://api.sandbox.game/experiences/social-event/515</a> and read the JSON manually.
+
+
+## The List
+
+Last updated: 2025-09-29 08:11:17. You can get the latest version with the [wizard](#wizard).
+
+<div class="bg-base-100 border border-base-content/15 rounded-box overflow-x-auto">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Release Date</th>
+        <th>Experience</th>
+      </tr>
+    </thead>
+    <tbody>
+      {data.map(([releaseDate, experience]) => (
+        <tr>
+          <td>{releaseDate}</td>
+          <td>{experience}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

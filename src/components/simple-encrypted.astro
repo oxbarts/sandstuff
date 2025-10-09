@@ -1,0 +1,59 @@
+---
+import { Icon } from '@astrojs/starlight/components'
+import { xorEncode } from '~/lib/encrypt.ts'
+
+interface Props {
+  password: string
+}
+
+const { password } = Astro.props
+const slot = await Astro.slots.render('default')
+
+const payload = xorEncode(slot, password)
+---
+
+<div class="flex flex-col justify-center items-center p-12 md:p-24 border-2 border-accent-200 border-dashed rounded min-h-[50vh] text-center" data-encrypted data-payload={payload}>
+  <p class="mb-4">This content is only for friends. Good thing is, when you found this website, we <i>are</i> probably friends.</p>
+  <button class="bg-(--sl-color-text-accent) border-(--sl-color-text-accent) text-(--sl-color-black) p-[.9375rem_1.25rem] items-center border rounded-full inline-flex gap-[0.5em] leading-[1.1875] no-underline outline-offset-[0.25rem]">
+    <Icon name="seti:license"/>
+    Unlock Content
+  </button>
+
+</div>
+
+<script>
+const xorDecode = (data: string, key: string) => {
+  const k = new TextEncoder().encode(key)
+  const out = new Uint8Array([...atob(data)].map(c => c.charCodeAt(0))).map((b, i) => b ^ k[i % k.length])
+  return new TextDecoder().decode(out)
+}
+
+const addEventListeners = () => {
+  document?.querySelector('[data-encrypted] > button')?.addEventListener('click', async (event: Event) => {
+    const button = event.currentTarget as HTMLButtonElement
+    const container = button.parentElement as HTMLDivElement
+    if (!container.dataset.payload) {
+      return
+    }
+    const ciphertext = container.dataset.payload
+    const template = document.createElement('template')
+
+    const password = prompt('Enter password')
+    if (!password) {
+      return
+    }
+
+    try {
+      const plain = xorDecode(ciphertext, password)
+      template.innerHTML = plain
+      container.parentNode?.replaceChild(template.content, container)
+    } catch (err) {
+      console.error(err)
+      alert('Decryption failed 😕')
+    }
+  }, true)
+}
+
+document?.addEventListener('astro:after-swap', addEventListeners)
+addEventListeners()
+</script>

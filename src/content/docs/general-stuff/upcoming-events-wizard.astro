@@ -1,0 +1,111 @@
+---
+import { Steps, Icon } from '@astrojs/starlight/components'
+---
+
+<Steps>
+  <ol>
+    <li>
+      <p><strong>Get the data</strong></p>
+      <p>Clicking the button opens a new tab with a lot of gibberish (aka JSON). Copy all of it and paste it in step 2.</p>
+      <p><a class="no-underline btn" href="https://api.sandbox.game/social-events?bannerVisualization[]=events&upcoming=true&past=true&limit=10&offset=0&available=true" target="_blank" rel="noopener noreferrer">Open Data <Icon name="external"/></a></p>
+    </li>
+    <li>
+      <p><strong>Analyze data</strong></p>
+      <p>Paste the data from step 1 into the following field and hit analyze.</p>
+      <form id="ue-form" novalidate>
+        <div>
+          <textarea class="w-full resize-y textarea" name="data" required></textarea>
+          <p class="empty:hidden text-rose-600" data-error-message></p>
+        </div>
+        <button class="btn btn-primary">Analyze</button>
+      </form>
+    </li>
+    <li>
+      <p><strong>Result</strong></p>
+      <div id="ue-output">
+        <div class="flex justify-center p-4 border-2 border-zinc-200 border-dashed rounded-lg font-semibold text-zinc-500 text-sm text-center text-balance">
+          <i>Upcoming events will appear after hitting the Analyze button</i>
+        </div>
+      </div>
+    </li>
+  </ol>
+</Steps>
+
+<template id="ue-event-template">
+  <details class="pl-0 border-l-0">
+    <summary class="mb-0"></summary>
+    <ul class="mt-0">
+      <li><b class="text-sm">Start Date:</b> </li>
+      <li class="whitespace-pre-wrap"><b class="text-sm">Description:</b> </li>
+      <li>
+        <b class="text-sm">Rewards:</b>
+        <ul data-rewards class="mt-0"></ul>
+      </li>
+    </ul>
+  </details>
+</template>
+
+<script>
+import { cloneTemplate, render } from '~/lib/utils.ts'
+
+const form = document.querySelector('#ue-form') as HTMLFormElement
+const output = document.querySelector('#ue-output') as HTMLDivElement
+const eventTemplate = document.querySelector('#ue-event-template') as HTMLTemplateElement
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+
+  const dataField = form.data as HTMLTextAreaElement
+
+  if (!dataField.validity.valid) {
+    dataField.parentElement!.querySelector('[data-error-message]')!.textContent = 'Can\'t do much without data.'
+    return false
+  }
+
+  let data
+  try {
+    data = JSON.parse((form.data as HTMLTextAreaElement).value)
+  } catch (_) {
+    dataField.parentElement!.querySelector('[data-error-message]')!.textContent = 'This doesn\'t look right. Are you sure you\'ve copied everything?'
+    return false
+  }
+
+  if (!data.upcoming?.rows || data.upcoming.rows.length === 0) {
+    output.querySelector('i')!.textContent = 'No upcoming events.'
+    return
+  }
+
+  const frag = document.createDocumentFragment()
+  data.upcoming.rows.forEach((event: UpcomingEvent) => {
+    const details = cloneTemplate<HTMLDetailsElement>(eventTemplate)
+    details.querySelector('summary')!.textContent = event.title
+    const lis = details.querySelectorAll('li')
+    lis[0].innerHTML += event.startDate ? new Date(event.startDate).toISOString().split('T')[0] : '?'
+    lis[1].innerHTML += render(event.description)
+    const rewards = details.querySelector('[data-rewards]')!
+    event.rewards.forEach(reward => {
+      const li = document.createElement('li')
+      li.textContent = [
+        reward.amount || null,
+        reward.type,
+        reward.description ? render(reward.description) : null,
+      ].filter(Boolean).join(' ')
+      rewards.appendChild(li)
+    })
+    frag.appendChild(details)
+  })
+
+  output.replaceChildren(frag)
+})
+
+type UpcomingEvent = {
+  title: string
+  description: string
+  startDate?: string
+  rewards: {
+    type: string
+    amount?: string
+    description?: string
+  }[]
+}
+</script>

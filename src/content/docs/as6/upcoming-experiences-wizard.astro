@@ -1,0 +1,99 @@
+---
+import { Steps, Icon } from '@astrojs/starlight/components'
+---
+
+<Steps>
+  <ol>
+    <li>
+      <p><strong>Get the data</strong></p>
+      <p>Clicking the button opens a new tab with a lot of gibberish (aka JSON). Copy all of it and paste it in step 2.</p>
+      <p><a class="no-underline btn" href="https://api.sandbox.game/experiences/social-event/515" target="_blank" rel="noopener noreferrer">Open Data <Icon name="external"/></a></p>
+    </li>
+    <li>
+      <p><strong>Analyze data</strong></p>
+      <p>Paste the data from step 1 into the following field and hit analyze.</p>
+      <form id="ue-form" novalidate>
+        <div>
+          <textarea class="w-full resize-y textarea" name="data" required></textarea>
+          <p class="empty:hidden text-rose-600" data-error-message></p>
+        </div>
+        <button class="btn btn-primary">Analyze</button>
+      </form>
+    </li>
+    <li>
+      <p><strong>Result</strong></p>
+      <div id="ue-output">
+        <div class="flex justify-center p-4 border-2 border-zinc-200 border-dashed rounded-lg font-semibold text-zinc-500 text-sm text-center text-balance">
+          <i>Upcoming experiences will appear after hitting the Analyze button</i>
+        </div>
+      </div>
+    </li>
+  </ol>
+</Steps>
+
+<template id="ue-form-template">
+  <div class="bg-base-100 border border-base-content/15 rounded-box overflow-x-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Release Date</th>
+          <th>Experience</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</template>
+
+<template id="ue-form-row-template">
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+</template>
+
+<script>
+import { cloneTemplate } from '~/lib/utils.ts'
+
+const form = document.querySelector('#ue-form') as HTMLFormElement
+const output = document.querySelector('#ue-output') as HTMLDivElement
+const formTemplate = document.querySelector('#ue-form-template') as HTMLTemplateElement
+const rowTemplate = document.querySelector('#ue-form-row-template') as HTMLTemplateElement
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+
+  const dataField = form.data as HTMLTextAreaElement
+
+  if (!dataField.validity.valid) {
+    dataField.parentElement!.querySelector('[data-error-message]')!.textContent = 'Can\'t do much without data.'
+    return false
+  }
+
+  let data
+  try {
+    data = JSON.parse((form.data as HTMLTextAreaElement).value)
+  } catch (_) {
+    dataField.parentElement!.querySelector('[data-error-message]')!.textContent = 'This doesn\'t look right. Are you sure you\'ve copied everything?'
+    return false
+  }
+
+  const table = cloneTemplate<HTMLTableElement>(formTemplate)
+  const tbody = table.querySelector('tbody')!
+
+  data.forEach((exp: Experience) => {
+    const row = cloneTemplate<HTMLTableRowElement>(rowTemplate)
+    const td = row.querySelectorAll<HTMLTableCellElement>('td')
+    td[0].textContent = exp.publishDate ? new Date(exp.publishDate).toISOString().split('T')[0] : '?'
+    td[1].textContent = exp.name ?? '😶‍🌫️ Unknown'
+    tbody.appendChild(row)
+  })
+
+  output.replaceChildren(table)
+})
+
+type Experience = {
+  name?: string
+  publishDate?: string
+}
+</script>
