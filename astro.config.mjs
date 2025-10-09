@@ -3,9 +3,17 @@ import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 
 import tailwindcss from '@tailwindcss/vite'
+import rehypeSandboxLinks from '~/lib/rehype-sandbox-links'
+import rehypeEmptyLinks from '~/lib/rehype-empty-links'
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://oxbarts.github.io',
+  base: '/sandstuff',
+  trailingSlash: 'always',
+  markdown: {
+    rehypePlugins: [rehypeSandboxLinks, rehypeEmptyLinks],
+  },
   integrations: [
     starlight({
       title: 'oxbarts/Sandstuff',
