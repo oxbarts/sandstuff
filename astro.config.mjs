@@ -18,7 +18,7 @@ export default defineConfig({
     starlight({
       title: 'oxbarts/Sandstuff',
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' },
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/oxbarts/sandstuff' },
         { icon: 'x.com', label: 'X', href: 'https://x.com/oxbarts' },
         { icon: 'youtube', label: 'YouTube', href: 'https://youtube.com/@oxbarts' },
       ],
