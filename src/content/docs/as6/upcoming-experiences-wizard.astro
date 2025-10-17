@@ -46,9 +46,9 @@ import { Steps, Icon } from '@astrojs/starlight/components'
 </template>
 
 <template id="ue-form-row-template">
-  <tr>
-    <td></td>
-    <td></td>
+  <tr class="data-upcoming:font-semibold">
+    <td>?</td>
+    <td>😶‍🌫️ Unknown</td>
   </tr>
 </template>
 
@@ -59,6 +59,35 @@ const form = document.querySelector('#ue-form') as HTMLFormElement
 const output = document.querySelector('#ue-output') as HTMLDivElement
 const formTemplate = document.querySelector('#ue-form-template') as HTMLTemplateElement
 const rowTemplate = document.querySelector('#ue-form-row-template') as HTMLTemplateElement
+
+function sortExperiences(exps: Experience[]) {
+  const result: (Experience & { dummyDate?: Date })[] = []
+
+  const minDate = exps
+    .map(e => e.publishDate && new Date(e.publishDate))
+    .filter(Boolean)
+    .sort((a, b) => (a as Date).getTime() - (b as Date).getTime())[0]
+
+  if (!minDate) return [...exps]
+
+  for (let i = 0; i < exps.length; i++) {
+    const exp = exps[i]
+    if (exp.publishDate) {
+      result.push(exp)
+      continue
+    }
+
+    const prev = result[i - 1]
+    const dummyDate = new Date(prev?.publishDate ?? prev?.dummyDate ?? minDate)
+    dummyDate.setMinutes(dummyDate.getMinutes() + 1)
+
+    result.push({ ...exp, dummyDate })
+  }
+
+  return result.toSorted(
+    (a, b) => new Date(a.publishDate ?? a.dummyDate!).getTime() - new Date(b.publishDate ?? b.dummyDate!).getTime()
+  )/* .map(({ name, publishDate }) => ({ name, publishDate: publishDate })) */
+}
 
 form.addEventListener('submit', e => {
   e.preventDefault()
@@ -80,12 +109,26 @@ form.addEventListener('submit', e => {
 
   const table = cloneTemplate<HTMLTableElement>(formTemplate)
   const tbody = table.querySelector('tbody')!
+  const today = new Date()
+  console.log('today', today)
 
-  data.forEach((exp: Experience) => {
+  sortExperiences(data).forEach((exp: Experience) => {
     const row = cloneTemplate<HTMLTableRowElement>(rowTemplate)
     const td = row.querySelectorAll<HTMLTableCellElement>('td')
-    td[0].textContent = exp.publishDate ? new Date(exp.publishDate).toISOString().split('T')[0] : '?'
-    td[1].textContent = exp.name ?? '😶‍🌫️ Unknown'
+    if (exp.publishDate) {
+      const pubDate = new Date(exp.publishDate)
+      td[0].textContent = pubDate.toISOString().split('T')[0]
+      if (pubDate > today) {
+        console.log('Upcoming:', exp.name)
+        row.dataset.upcoming = ''
+      }
+    }
+    if (exp.name) {
+      td[1].textContent = exp.name
+    }
+
+    // td[0].textContent = exp.publishDate ? pubDate.toISOString().split('T')[0] : '?'
+    // td[1].textContent = exp.name ?? '😶‍🌫️ Unknown'
     tbody.appendChild(row)
   })
 
