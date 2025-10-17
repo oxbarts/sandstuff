@@ -86,7 +86,7 @@ function sortExperiences(exps: Experience[]) {
 
   return result.toSorted(
     (a, b) => new Date(a.publishDate ?? a.dummyDate!).getTime() - new Date(b.publishDate ?? b.dummyDate!).getTime()
-  )/* .map(({ name, publishDate }) => ({ name, publishDate: publishDate })) */
+  )
 }
 
 form.addEventListener('submit', e => {
@@ -126,9 +126,6 @@ form.addEventListener('submit', e => {
     if (exp.name) {
       td[1].textContent = exp.name
     }
-
-    // td[0].textContent = exp.publishDate ? pubDate.toISOString().split('T')[0] : '?'
-    // td[1].textContent = exp.name ?? '😶‍🌫️ Unknown'
     tbody.appendChild(row)
   })
 
